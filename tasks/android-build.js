@@ -26,17 +26,20 @@ gulp.task('run-android-build',
         ' ' + utils.wrapPath(path.resolve(appiumRoot, 'sample-code/apps/'))
     ]);
   }).then(function () {
-    var env = _.clone(process.env);
-    env.TARGET = path.resolve(global.artifactsDir, 'appium-build.bz2');
     return utils.smartSpawn(
-      path.resolve(appiumRoot, 'ci/archive-build.sh'),
-      [],
+      'tar',
+      [
+        'cfjp',
+        path.resolve(global.artifactsDir, 'appium-build.bz2'),
+        '--exclude=.git',
+        '--exclude=artifacts',
+        '--exclude=submodules',
+        '.'
+      ],
       {
         print: 'Archiving build',
         cwd: appiumRoot,
-        env: env
       }
     ).promise;
   });
 });
-
