@@ -29,4 +29,4 @@ gulp.task('run-unit-tests',
 });
 
 // for backward compatibility
-gulp.task('run-unit-tests', ['run-appium-unit-tests']);
+gulp.task('run-appium-unit-tests', ['run-unit-tests']);
