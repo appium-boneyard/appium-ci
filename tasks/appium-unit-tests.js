@@ -24,8 +24,8 @@ gulp.task('run-appium-unit-tests',
       print: 'Running Appium unit tests',
       cwd: appiumRoot,
       env: env,
-      logFile: path.resolve(global.artefactsDir, 'gulp.log'),
-      uncoloredLogFile: path.resolve(global.artefactsDir, 'gulp-uncolored.log'),
+      logFile: path.resolve(global.artifactsDir, 'gulp.log'),
+      uncoloredLogFile: path.resolve(global.artifactsDir, 'gulp-uncolored.log'),
    }
   ).promise;
 });

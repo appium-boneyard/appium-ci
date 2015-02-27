@@ -15,8 +15,8 @@ gulp.task('prepare-output-dirs', function() {
   };
 
   var seq = _([
-    'rm -rf ' + wrapPath(global.artefactsDir),
-    'mkdir -p ' + wrapPath(global.artefactsDir),
+    'rm -rf ' + wrapPath(global.artifactsDir),
+    'mkdir -p ' + wrapPath(global.artifactsDir),
     'rm -rf ' + wrapPath(global.outputDir),
     'mkdir -p ' + wrapPath(global.outputDir)
    ]).map(function (script) {
