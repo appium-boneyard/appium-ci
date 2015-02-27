@@ -14,7 +14,7 @@ gulp.task('run-appium-unit-tests',
   env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
   env.JUNIT_REPORT_PATH = path.resolve(
     global.outputDir,
-    'report' + (env.BUILD_NUMBER) ? '-' + env.BUILD_NUMBER : ''  +'.xml');
+    'report' + ((env.BUILD_NUMBER) ? '-' + env.BUILD_NUMBER : '') +'.xml');
   env.JUNIT_REPORT_STACK = 1;
 
   return utils.smartSpawn(

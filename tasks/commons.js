@@ -21,7 +21,7 @@ gulp.task('prepare-output-dirs', function() {
     'mkdir -p ' + wrapPath(global.outputDir)
    ]).map(function (script) {
     return function() {
-      exec(script);
+      return exec(script);
     };
   });
   return seq.reduce(Q.when, new Q());
