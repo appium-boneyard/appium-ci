@@ -11,4 +11,5 @@ console.log('global.appiumRoot -->', global.appiumRoot);
 
 require('./tasks/dev');
 require('./tasks/commons');
-require('./tasks/appium-unit-tests');
+require('./tasks/unit-tests');
+require('./tasks/android-build');

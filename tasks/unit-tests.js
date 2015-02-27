@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 
 var appiumRoot = global.appiumRoot;
 
-gulp.task('run-appium-unit-tests',
+gulp.task('run-unit-tests',
     ['prepare-output-dirs', 'appium-npm-install'],function () {
   var env = _.clone(process.env);
 
@@ -24,8 +24,9 @@ gulp.task('run-appium-unit-tests',
       print: 'Running Appium unit tests',
       cwd: appiumRoot,
       env: env,
-      logFile: path.resolve(global.artifactsDir, 'gulp.log'),
-      uncoloredLogFile: path.resolve(global.artifactsDir, 'gulp-uncolored.log'),
    }
   ).promise;
 });
+
+// for backward compatibility
+gulp.task('run-unit-tests', ['run-appium-unit-tests']);

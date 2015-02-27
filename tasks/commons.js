@@ -1,30 +1,15 @@
 "use strict";
 
 var gulp = require('gulp'),
-    utils = require('../lib/utils'),
-    _ = require('underscore'),
-    Q = require('q'),
-    exec = Q.denodeify(require('child_process').exec);
+    utils = require('../lib/utils');
 
 gulp.task('prepare-output-dirs', function() {
-  var wrapPath = function (path) {
-    if(!path.match('^\'')) {
-      path = '\'' + path + '\'';
-    }
-    return path;
-  };
-
-  var seq = _([
-    'rm -rf ' + wrapPath(global.artifactsDir),
-    'mkdir -p ' + wrapPath(global.artifactsDir),
-    'rm -rf ' + wrapPath(global.outputDir),
-    'mkdir -p ' + wrapPath(global.outputDir)
-   ]).map(function (script) {
-    return function() {
-      return exec(script);
-    };
-  });
-  return seq.reduce(Q.when, new Q());
+  return utils.executeShellCommands([
+    'rm -rf ' + utils.wrapPath(global.artifactsDir),
+    'mkdir -p ' + utils.wrapPath(global.artifactsDir),
+    'rm -rf ' + utils.wrapPath(global.outputDir),
+    'mkdir -p ' + utils.wrapPath(global.outputDir)
+  ]);
 });
 
 gulp.task('appium-npm-install',function () {
