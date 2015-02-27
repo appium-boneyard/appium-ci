@@ -7,11 +7,18 @@ var gulp = require('gulp'),
     exec = Q.denodeify(require('child_process').exec);
 
 gulp.task('prepare-output-dirs', function() {
+  var wrapPath = function (path) {
+    if(!path.match('^\'')) {
+      path = '\'' + path + '\'';
+    }
+    return path;
+  };
+
   var seq = _([
-    'rm -rf ' + global.artefactsDir,
-    'mkdir -p ' + global.artefactsDir,
-    'rm -rf ' + global.outputDir,
-    'mkdir -p ' + global.outputDir
+    'rm -rf ' + wrapPath(global.artefactsDir),
+    'mkdir -p ' + wrapPath(global.artefactsDir),
+    'rm -rf ' + wrapPath(global.outputDir),
+    'mkdir -p ' + wrapPath(global.outputDir)
    ]).map(function (script) {
     return function() {
       exec(script);
