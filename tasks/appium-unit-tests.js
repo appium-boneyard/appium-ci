@@ -5,19 +5,27 @@ var gulp = require('gulp'),
     path = require('path'),
     _ = require('underscore');
 
-var argv = global.argv;
+var appiumRoot = global.appiumRoot;
 
-gulp.task('run-appium-unit-tests',function () {
+gulp.task('run-appium-unit-tests',
+    ['prepare-output-dirs', 'appium-npm-install'],function () {
   var env = _.clone(process.env);
-  env.MOCHA_REPORTER = 'spec';
+
+  env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
+  env.JUNIT_REPORT_PATH = path.resolve(
+    global.outputDir,
+    'report' + (env.BUILD_NUMBER) ? '-' + env.BUILD_NUMBER : ''  +'.xml');
+  env.JUNIT_REPORT_STACK = 1;
 
   return utils.smartSpawn(
-    path.resolve(argv.appiumRoot, 'node_modules/.bin/gulp'),
+    path.resolve(appiumRoot, 'node_modules/.bin/gulp'),
     ['--color'],
     {
-      logFile: argv.logFile,
-      cwd: argv.appiumRoot,
-      env: env
-    }
+      print: 'Running Appium unit tests',
+      cwd: appiumRoot,
+      env: env,
+      logFile: path.resolve(global.artefactsDir, 'gulp.log'),
+      uncoloredLogFile: path.resolve(global.artefactsDir, 'gulp-uncolored.log'),
+   }
   ).promise;
 });
