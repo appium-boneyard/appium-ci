@@ -15,8 +15,8 @@ gulp.task('run-android-e2e-worker',
   return runSequence('download-build','expand-build')
     .then(function () {
       return utils.smartSpawn('gulp', [
-        '--color',
         'show-android-e2e-tests-split',
+        '--color',
         '--androidTestSplit=' + argv.numOfSplits
       ], {
         print: 'Showing test split',
