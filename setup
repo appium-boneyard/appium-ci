@@ -22,3 +22,6 @@ npm install >> npm-install.log 2>&1
 
 # installing global gulp
 npm install -g gulp
+
+# display setting
+export DISPLAY=:1
