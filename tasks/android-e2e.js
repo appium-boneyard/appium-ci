@@ -3,15 +3,15 @@
 var gulp = require('gulp'),
     Q = require('q'),
     runSequence = Q.denodeify(require('run-sequence')),
-    utils = require('../lib/utils'),
-    path = require('path'),
-    _ = require('underscore');
+    utils = require('../lib/utils');
+    //path = require('path'),
+    //_ = require('underscore');
 
 var appiumRoot = global.appiumRoot;
 var argv = global.argv;
 
 gulp.task('run-android-e2e-worker',
-    ['prepare-dirs', 'download-build'],function () {
+    ['prepare-dirs'],function () {
   return runSequence('download-build','expand-build')
     .then(function () {
       return utils.smartSpawn('gulp', [
