@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 var appiumRoot = global.appiumRoot;
 
 gulp.task('run-android-build',
-    ['prepare-output-dirs'],function () {
+    ['prepare-dirs'],function () {
 
   return utils.smartSpawn(
     path.resolve(appiumRoot, 'reset.sh'),

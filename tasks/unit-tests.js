@@ -8,9 +8,9 @@ var gulp = require('gulp'),
 var appiumRoot = global.appiumRoot;
 
 gulp.task('run-unit-tests',
-    ['prepare-output-dirs', 'appium-npm-install'],function () {
-  var env = _.clone(process.env);
+    ['prepare-dirs', 'appium-npm-install'],function () {
 
+  var env = _.clone(process.env);
   env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
   env.JUNIT_REPORT_PATH = path.resolve(
     global.outputDir,
@@ -28,5 +28,3 @@ gulp.task('run-unit-tests',
   ).promise;
 });
 
-// for backward compatibility
-gulp.task('run-appium-unit-tests', ['run-unit-tests']);
