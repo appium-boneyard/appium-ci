@@ -31,8 +31,8 @@ gulp.task('run-android-e2e-worker',
       env.JUNIT_REPORT_STACK = 1;
 
       return utils.smartSpawn('gulp', [
-        '--color',
         'run-android-e2e',
+        '--color',
         '--avd=' + argv.avd,
         '--androidTestSplit=' + argv.numOfSplits,
         '--androidTestGroup=' + argv.split
