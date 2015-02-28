@@ -1,5 +1,5 @@
 #!/bin/bash
 { set -x; } 2>/dev/null
-export APPIUM_HOME="$(pwd)"
+export APPIUM_ROOT="$(pwd)"
 git clone https://github.com/appium/appium-ci-gulper.git
 pushd appium-ci-gulper
