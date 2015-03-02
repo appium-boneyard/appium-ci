@@ -6,10 +6,8 @@ var gulp = require('gulp'),
     request = Q.denodeify(require('request')),
     utils = require('../lib/utils');
 
-var argv = global.argv;
-
-gulp.task('collect-downstream-xunit-results', function () {
-  var targetDir = argv.targetDir;
+gulp.task('collect-downstream-xunit-results', ['prepare-dirs'],function () {
+  var targetDir = global.outputDir;
   var jobNameRaw = process.env.LAST_TRIGGERED_JOB_NAME;
   var jobName = jobNameRaw.replace(/_/g,' ');
   var builds = process.env['TRIGGERED_BUILD_NUMBERS_' + jobNameRaw].split(',');
