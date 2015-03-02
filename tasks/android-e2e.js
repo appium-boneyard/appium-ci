@@ -26,7 +26,7 @@ gulp.task('run-android-e2e-worker',
       var env = _.clone(process.env);
       env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
       env.JUNIT_REPORT_PATH = path.resolve(
-          global.outputDir,
+          global.artifactsDir,
           'report' + ((env.BUILD_NUMBER) ? '-' + env.BUILD_NUMBER : '') +'.xml');
       env.JUNIT_REPORT_STACK = 1;
 
