@@ -13,11 +13,10 @@ gulp.task('download-build', ['prepare-dirs'], function () {
   var m = argv.downloadBuild.match(/(.*)\/(.*)/);
   var jobName = m[1];
   var buildNumber = m[2];
-  var ciRootUrl = process.env.HUDSON_URL;
 
   console.log('downloading ' + jobName + '/' + buildNumber);
 
-  var upStreamJobUrl = ciRootUrl + 'job/' + utils.encode(jobName) +
+  var upStreamJobUrl = global.ciRootUrl + 'job/' + utils.encode(jobName) +
      '/' + buildNumber  + '/api/json';
   console.log('upStreamJobUrl ->', upStreamJobUrl);
   return request(upStreamJobUrl)

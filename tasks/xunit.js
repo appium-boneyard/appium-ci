@@ -3,29 +3,30 @@
 var gulp = require('gulp'),
     Q = require('q'),
     _ = require('underscore'),
-    exec = Q.denodeify(require('child_process').exec),
-    utils = require('./lib/utils');
+    request = Q.denodeify(require('request')),
+    utils = require('../lib/utils');
 
-gulp.task('collect-downstream-tap-results', function () {
+gulp.task('collect-downstream-xunit-results', function () {
   var jobNameRaw = process.env.LAST_TRIGGERED_JOB_NAME;
   var jobName = jobNameRaw.replace(/_/g,' ');
   var builds = process.env['TRIGGERED_BUILD_NUMBERS_' + jobNameRaw].split(',');
-  var ok = true;
-  var seq = _(builds).map(function (build) {
-    return function () {
-      var tapTgz = 'tapdata_' + build + '.tgz';
-      return utils.downloadS3Artifact(jobName, build, tapTgz).then(function () {
-        return exec('tar xfz ' + tapTgz);
-      }).catch(function (err) {
-        console.error('error while retrieving ' + tapTgz + 'error: ' + err);
-        ok = false;
+  var buildSeq = _(builds).map(function (build) {
+    return function() {
+      var buildInfoUrl = global.ciRootUrl + 'job/' + utils.encode(jobName) + '/' +
+        build + '/api/json';
+      return request(buildInfoUrl).spread(function (res, body) {
+        var artifactSeq = _(JSON.parse(body).artifacts).map(function (artifact) {
+          return function () {
+            console.log(artifact.relativePath);
+            return utils.downloadArtifact(jobName, build, artifact.relativePath, '.').
+              catch(function () {
+                console.warn('Could not downlaod ' + artifact.relativePath + '.');
+              });
+          };
+        });
+        return artifactSeq.reduce(Q.when, new Q());
       });
-    };
+      };
   });
-  return seq.reduce(Q.when, new Q())
-    .then(function () {
-      if (!ok) throw new Error('Tap file retrieval failed.');
-    });
+  return buildSeq.reduce(Q.when, new Q());
 });
-
-
