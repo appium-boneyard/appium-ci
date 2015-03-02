@@ -6,7 +6,10 @@ var gulp = require('gulp'),
     request = Q.denodeify(require('request')),
     utils = require('../lib/utils');
 
+var argv = global.argv;
+
 gulp.task('collect-downstream-xunit-results', function () {
+  var targetDir = argv.targetDir;
   var jobNameRaw = process.env.LAST_TRIGGERED_JOB_NAME;
   var jobName = jobNameRaw.replace(/_/g,' ');
   var builds = process.env['TRIGGERED_BUILD_NUMBERS_' + jobNameRaw].split(',');
@@ -18,7 +21,7 @@ gulp.task('collect-downstream-xunit-results', function () {
         var artifactSeq = _(JSON.parse(body).artifacts).map(function (artifact) {
           return function () {
             console.log(artifact.relativePath);
-            return utils.downloadArtifact(jobName, build, artifact.relativePath, '.').
+            return utils.downloadArtifact(jobName, build, artifact.relativePath, targetDir).
               catch(function () {
                 console.warn('Could not downlaod ' + artifact.relativePath + '.');
               });
