@@ -16,6 +16,7 @@ require('./tasks/dev');
 require('./tasks/commons');
 require('./tasks/build');
 require('./tasks/unit-tests');
+require('./tasks/ios-build');
 require('./tasks/android-build');
 require('./tasks/android-e2e');
 require('./tasks/xunit');
