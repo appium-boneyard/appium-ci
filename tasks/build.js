@@ -1,22 +1,23 @@
 "use strict";
 
 var gulp = require('gulp'),
-    utils = require('utils'),
-    request = require('request'),
-    _ = require('underscore');
+    utils = require('../lib/utils'),
+    Q = require('q'),
+    request = Q.denodeify(require('request')),
+    _ = require('underscore'),
+    path = require('path');
 
 var argv = global.argv;
 
-gulp.task('download-build', function () {
-  var upstreamJobName = argv.upstreamBuildName;
-  var upstreamBuildNumber = argv.upStreamBuildNumber;
-  var ciRootUrl = process.env.HUDSON_URL;
+gulp.task('download-build', ['prepare-dirs'], function () {
+  var m = argv.downloadBuild.match(/(.*)\/(.*)/);
+  var jobName = m[1];
+  var buildNumber = m[2];
 
-  console.log('upstreamJobName ->', upstreamJobName);
-  console.log('upstreamBuildNumber ->', upstreamBuildNumber);
+  console.log('downloading ' + jobName + '/' + buildNumber);
 
-  var upStreamJobUrl = ciRootUrl + 'job/' + utils.encode(upstreamJobName) +
-     '/' + upstreamBuildNumber  + '/api/json';
+  var upStreamJobUrl = global.ciRootUrl + 'job/' + utils.encode(jobName) +
+     '/' + buildNumber  + '/api/json';
   console.log('upStreamJobUrl ->', upStreamJobUrl);
   return request(upStreamJobUrl)
     .spread(function (res, body) {
@@ -26,7 +27,20 @@ gulp.task('download-build', function () {
           return build.jobName.match(/Build/);
         }).first().value();
     }).then(function (buildJob) {
-      return utils.downloadS3Artifact(buildJob.jobName, buildJob.buildNumber, 'appium-build.bz2');
+      return utils.downloadS3Artifact(buildJob.jobName, buildJob.buildNumber,
+        'appium-build.bz2', global.inputDir);
     });
+});
+
+gulp.task('expand-build' , function function_name() {
+  return utils.smartSpawn('tar', [
+      'xfjp',
+      path.resolve(global.inputDir, 'appium-build.bz2'),
+      '-h'
+    ], {
+      print: 'Expanding build',
+      cwd: global.appiumRoot
+    }
+  ).promise;
 });
 

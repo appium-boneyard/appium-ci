@@ -1,5 +1,6 @@
 #!/bin/bash
-
+{ set +x; } 2>/dev/null
+echo "Setting up nvm"
 # install node if we are on on cloudbees cloud node
 if [[ $NODE_LABELS =~ .*lxc-fedora.* ]]
 then
@@ -11,11 +12,16 @@ else
 fi
 
 # print node and npm versions
+echo "configuring node"
 nvm use 0.10
 
-# retrieving gulpfile, maybe it should have it's own repo sometimes.
-curl -sS -o gulpfile.js $APPIUM_CI_TOOLS_ROOT/gulpfile.js
-curl -sS -o package.json $APPIUM_CI_TOOLS_ROOT/package.json
-
+# install deps
+{ set -x; } 2>/dev/null
 npm install >> npm-install.log 2>&1
+{ set +x; } 2>/dev/null
 
+# installing global gulp
+npm install -g gulp
+
+# display setting
+export DISPLAY=:1
