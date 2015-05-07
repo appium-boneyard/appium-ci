@@ -44,7 +44,6 @@ gulp.task('run-ios-build',
     ).promise;
   }).then(function() {
     console.log('Uploading to S3');
-    console.log("AKAK -->", process.env.AWS_ACCESS_KEY_ID);
     return uploadToS3(
       "appium-ci-builds",
       path.resolve(global.artifactsDir, 'appium-build.bz2'),
