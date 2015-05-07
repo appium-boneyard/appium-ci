@@ -43,10 +43,21 @@ gulp.task('run-ios-build',
       }
     ).promise;
   }).then(function() {
-    console.log('Uploading to S3');
-    return uploadToS3(
-      "appium-ci-builds",
-      path.resolve(global.artifactsDir, 'appium-build.bz2'),
-      "/jobs/" + process.env.JOB_NAME + "/" + process.env. BUILD_NUMBER  + "/appium-build.bz2");
+    var uploadServer = process.env.BUILD_UPLOAD_SERVER;
+    return utils.smartSpawn(
+      'scp',
+      [
+        '-o',
+        "UserKnownHostsFile=/dev/null",
+        '-o',
+        'StrictHostKeyChecking=no',
+        path.resolve(global.artifactsDir, 'appium-build.bz2'),
+        'appium@' + uploadServer + ':builds/'
+      ],
+      {
+        print: 'Uploding build to: ' + uploadServer,
+        cwd: appiumRoot,
+      }
+    ).promise;
   });
 });
