@@ -43,7 +43,7 @@ gulp.task('run-ios-build',
       }
     ).promise;
   }).then(function() {
-    uploadToS3(
+    return uploadToS3(
       "appium-ci-builds",
       path.resolve(global.artifactsDir, 'appium-build.bz2'),
       "/jobs/" + process.env.JOB_NAME + "/" + process.env. BUILD_NUMBER  + "/appium-build.bz2");
