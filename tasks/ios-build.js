@@ -52,7 +52,7 @@ gulp.task('run-ios-build',
         '-o',
         'StrictHostKeyChecking=no',
         path.resolve(global.artifactsDir, 'appium-build.bz2'),
-        'appium@' + uploadServer + ':builds/'
+        'appium@' + uploadServer + ':builds/' + process.env.BUILD_ID  + '_appium-build.bz2'
       ],
       {
         print: 'Uploding build to: ' + uploadServer,
