@@ -2,7 +2,8 @@
 
 var gulp = require('gulp'),
     utils = require('../lib/utils'),
-    path = require('path');
+    path = require('path'),
+    uploadToS3 = require("../lib/s3-fast-upload");
     // _ = require('underscore');
 
 var appiumRoot = global.appiumRoot;
@@ -41,5 +42,10 @@ gulp.task('run-ios-build',
         cwd: appiumRoot,
       }
     ).promise;
+  }).then(function() {
+    uploadToS3(
+      "appium-ci-builds",
+      path.resolve(global.artifactsDir, 'appium-build.bz2'),
+      "/jobs/" + process.env.JOB_NAME + "/" + process.env. BUILD_NUMBER  + "/appium-build.bz2");
   });
 });
