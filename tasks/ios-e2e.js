@@ -10,12 +10,12 @@ var gulp = require('gulp'),
 var appiumRoot = global.appiumRoot;
 var argv = global.argv;
 
-gulp.task('run-android-e2e-worker',
+gulp.task('run-ios-e2e-worker',
     ['prepare-dirs'],function () {
   return runSequence('download-build','expand-build')
     .then(function () {
       return utils.smartSpawn('gulp', [
-        'show-android-e2e-tests-split',
+        'show-ios-e2e-tests-split',
         '--color',
         '--testSplit=' + argv.numOfSplits
       ], {
@@ -31,9 +31,8 @@ gulp.task('run-android-e2e-worker',
       env.JUNIT_REPORT_STACK = 1;
 
       return utils.smartSpawn('gulp', [
-        'run-android-e2e',
+        'run-ios-e2e',
         '--color',
-        '--avd=' + argv.avd,
         '--testSplit=' + argv.numOfSplits,
         '--testGroup=' + argv.split
       ], {
