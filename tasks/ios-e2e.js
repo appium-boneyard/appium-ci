@@ -12,7 +12,7 @@ var argv = global.argv;
 
 gulp.task('run-ios-e2e-worker',
     ['prepare-dirs'],function () {
-  return runSequence('download-build','expand-build')
+  return runSequence('download-scp-build','expand-build')
     .then(function () {
       return utils.smartSpawn('gulp', [
         'show-ios-e2e-tests-split',
