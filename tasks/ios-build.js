@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     // _ = require('underscore');
 
 var appiumRoot = global.appiumRoot;
+var uploadServer = process.env.BUILD_UPLOAD_SERVER;
 
 gulp.task('run-ios-build',
     ['prepare-dirs'],function () {
@@ -43,7 +44,22 @@ gulp.task('run-ios-build',
       }
     ).promise;
   }).then(function() {
-    var uploadServer = process.env.BUILD_UPLOAD_SERVER;
+    return utils.smartSpawn(
+      'ssh',
+      [
+        '-o',
+        "UserKnownHostsFile=/dev/null",
+        '-o',
+        'StrictHostKeyChecking=no',
+        'appium@' + uploadServer,
+        'mkdir -p ' + path.resolve('builds', process.env.JOB_NAME, process.env.BUILD_NUMBER)
+      ],
+      {
+        print: 'Uploding build to: ' + uploadServer,
+        cwd: appiumRoot,
+      }
+    ).promise;
+  }).then(function() {
     return utils.smartSpawn(
       'scp',
       [
@@ -52,12 +68,12 @@ gulp.task('run-ios-build',
         '-o',
         'StrictHostKeyChecking=no',
         path.resolve(global.artifactsDir, 'appium-build.bz2'),
-        'appium@' + uploadServer + ':builds/' + process.env.BUILD_ID  + '_appium-build.bz2'
+        'appium@' + uploadServer + ':' +  path.resolve('builds', process.env.JOB_NAME, process.env.BUILD_NUMBER, 'appium-build.bz2')
       ],
       {
         print: 'Uploding build to: ' + uploadServer,
         cwd: appiumRoot,
       }
     ).promise;
-  });
+   });
 });
