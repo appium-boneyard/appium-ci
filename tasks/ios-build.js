@@ -44,6 +44,7 @@ gulp.task('run-ios-build',
       }
     ).promise;
   }).then(function() {
+    var dir = path.join('builds', process.env.JOB_NAME, process.env.BUILD_NUMBER)
     return utils.smartSpawn(
       'ssh',
       [
@@ -52,10 +53,10 @@ gulp.task('run-ios-build',
         '-o',
         'StrictHostKeyChecking=no',
         'appium@' + uploadServer,
-        'mkdir -p ' + path.resolve('builds', process.env.JOB_NAME, process.env.BUILD_NUMBER)
+        'mkdir -p ' + dir
       ],
       {
-        print: 'Uploding build to: ' + uploadServer,
+        print: 'Creating dir: ' + dir,
         cwd: appiumRoot,
       }
     ).promise;
@@ -68,10 +69,10 @@ gulp.task('run-ios-build',
         '-o',
         'StrictHostKeyChecking=no',
         path.resolve(global.artifactsDir, 'appium-build.bz2'),
-        'appium@' + uploadServer + ':' +  path.resolve('builds', process.env.JOB_NAME, process.env.BUILD_NUMBER, 'appium-build.bz2')
+        'appium@' + uploadServer + ':' +  path.join('builds', process.env.JOB_NAME, process.env.BUILD_NUMBER, 'appium-build.bz2')
       ],
       {
-        print: 'Uploding build to: ' + uploadServer,
+        print: 'Uploading build to: ' + uploadServer,
         cwd: appiumRoot,
       }
     ).promise;
