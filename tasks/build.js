@@ -52,6 +52,7 @@ gulp.task('download-scp-build', ['prepare-dirs'], function () {
         }).first().value();
     }).then(function (buildJob) {
       var uploadServer = process.env.BUILD_UPLOAD_SERVER;
+      console.log('AKAK buildJob ->', buildJob);
       var src = path.join('builds', buildJob.jobName, buildJob.buildNumber, 'appium-build.bz2');
       var target = path.join(global.inputDir, 'appium-build.bz2');
       console.log('downloading via scp:', src);
