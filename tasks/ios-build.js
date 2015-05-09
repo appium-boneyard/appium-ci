@@ -53,7 +53,7 @@ gulp.task('run-ios-build',
         '-o',
         'StrictHostKeyChecking=no',
         'appium@' + uploadServer,
-        'mkdir -p ' + dir
+        'mkdir -p ' + utils.escapePath(dir)
       ],
       {
         print: 'Creating dir: ' + dir,
