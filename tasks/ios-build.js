@@ -2,8 +2,8 @@
 
 var gulp = require('gulp'),
     utils = require('../lib/utils'),
-    path = require('path'),
-    uploadToS3 = require("../lib/s3-fast-upload");
+    path = require('path');
+    // uploadToS3 = require("../lib/s3-fast-upload");
     // _ = require('underscore');
 
 var appiumRoot = global.appiumRoot;
@@ -11,15 +11,23 @@ var uploadServer = process.env.BUILD_UPLOAD_SERVER;
 
 gulp.task('run-ios-build',
     ['prepare-dirs'],function () {
-
   return utils.smartSpawn(
-    path.resolve(appiumRoot, 'reset.sh'),
-    ['--ios', '--dev', '--hardcore', '--verbose', '--no-npmlink'],
+    path.resolve(global.sideSims, 'configure.sh'),
+    ['6.1.1'],
     {
-      print: 'Running reset.sh',
-      cwd: appiumRoot,
+      print: 'Configuring xCode 6.1.1',
+      cwd: global.sideSims,
     }
-  ).promise.then(function () {
+  ).promise.then(function() {
+    return utils.smartSpawn(
+      path.resolve(appiumRoot, 'reset.sh'),
+      ['--ios', '--dev', '--hardcore', '--verbose', '--no-npmlink'],
+      {
+        print: 'Running reset.sh',
+        cwd: appiumRoot,
+      }
+    ).promise;
+  }).then(function () {
     // Dirty workaround
     //console.log('Replacing ApiDemo symlink by real directory');
     //return utils.executeShellCommands([
@@ -44,7 +52,7 @@ gulp.task('run-ios-build',
       }
     ).promise;
   }).then(function() {
-    var dir = path.join('builds', process.env.JOB_NAME, process.env.BUILD_NUMBER)
+    var dir = path.join('builds', process.env.JOB_NAME, process.env.BUILD_NUMBER);
     return utils.smartSpawn(
       'ssh',
       [
