@@ -6,14 +6,14 @@ if [[ $NODE_LABELS =~ .*lxc-fedora.* ]]
 then
   curl -sS  https://raw.githubusercontent.com/creationix/nvm/v0.23.3/install.sh | ( bash || true )
   source ~/.nvm/nvm.sh
-  nvm install 0.10 &> nvm-install.log
+  nvm install stable &> nvm-install.log
 else
   source ~/.nvm/nvm.sh
 fi
 
 # print node and npm versions
 echo "configuring node"
-nvm use 0.10
+nvm use stable
 
 # install deps
 { set -x; } 2>/dev/null
