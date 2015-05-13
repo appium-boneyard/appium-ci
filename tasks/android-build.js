@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     _ = require('underscore');
 
 var appiumRoot = global.appiumRoot;
+var uploadServer = process.env.BUILD_UPLOAD_SERVER;
 
 gulp.task('run-android-build',
     ['prepare-dirs'],function () {
@@ -41,5 +42,21 @@ gulp.task('run-android-build',
         cwd: appiumRoot,
       }
     ).promise;
-  });
+  }).then(function() {
+    return utils.smartSpawn(
+      'scp',
+      [
+        '-o',
+        "UserKnownHostsFile=/dev/null",
+        '-o',
+        'StrictHostKeyChecking=no',
+        path.resolve(global.artifactsDir, 'appium-build.bz2'),
+        'appium@' + uploadServer + ':' + utils.escapePath(path.join('builds', process.env.JOB_NAME, process.env.BUILD_NUMBER, 'appium-build.bz2'))
+      ],
+      {
+        print: 'Uploading build to: ' + uploadServer,
+        cwd: appiumRoot,
+      }
+    ).promise;
+   });
 });
