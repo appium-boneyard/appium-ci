@@ -43,20 +43,6 @@ gulp.task('run-android-build',
       }
     ).promise;
   }).then(function() {
-    return utils.smartSpawn(
-      'scp',
-      [
-        '-o',
-        "UserKnownHostsFile=/dev/null",
-        '-o',
-        'StrictHostKeyChecking=no',
-        path.resolve(global.artifactsDir, 'appium-build.bz2'),
-        'appium@' + uploadServer + ':' + utils.escapePath(path.join('builds', process.env.JOB_NAME, process.env.BUILD_NUMBER, 'appium-build.bz2'))
-      ],
-      {
-        print: 'Uploading build to: ' + uploadServer,
-        cwd: appiumRoot,
-      }
-    ).promise;
+    return utils.uploadBuild();
    });
 });
