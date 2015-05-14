@@ -26,7 +26,7 @@ gulp.task('run-ios-e2e-worker',
       var env = _.clone(process.env);
       env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
       env.JUNIT_REPORT_PATH = path.resolve(
-          global.artifactsDir,
+          global.reportsDir,
           'report' + ((env.BUILD_NUMBER) ? '-' + env.BUILD_NUMBER : '') +'.xml');
       env.JUNIT_REPORT_STACK = 1;
 
@@ -40,6 +40,10 @@ gulp.task('run-ios-e2e-worker',
         cwd: appiumRoot,
         env: env
       }).promise;
+    }).then(function() {
+      return utils.executeShellCommands([
+        'cp -R ' + utils.wrapPath(global.reportsDir) + '/* ' + utils.wrapPath(global.artifactsDir) + '/'
+      ]);
     });
 });
 

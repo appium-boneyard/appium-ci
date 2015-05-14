@@ -5,6 +5,7 @@ var path = require('path');
 global.argv = require('yargs').argv;
 global.appiumRoot = process.env.APPIUM_ROOT;
 global.artifactsDir = path.resolve(process.env.APPIUM_ROOT, 'artifacts');
+global.reportsDir = path.resolve(process.env.APPIUM_ROOT, 'reports');
 global.outputDir = path.resolve(process.env.APPIUM_ROOT, 'output');
 global.inputDir = path.resolve(process.env.APPIUM_ROOT, 'input');
 global.sideDisk = '/Volumes/SIDE';
