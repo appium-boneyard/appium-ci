@@ -40,7 +40,7 @@ gulp.task('run-ios-e2e-worker',
         cwd: appiumRoot,
         env: env
       }).promise;
-    }).then(function() {
+    }).fin(function() {
       return utils.executeShellCommands([
         'cp -R ' + utils.wrapPath(global.reportsDir) + '/* ' + utils.wrapPath(global.artifactsDir) + '/'
       ]);
