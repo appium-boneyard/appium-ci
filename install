@@ -1,5 +1,21 @@
 #!/bin/bash
 { set -x; } 2>/dev/null
-export APPIUM_ROOT="$(pwd)"
-git clone https://github.com/appium/appium-ci-gulper.git
-pushd appium-ci-gulper
+
+# when old syle structure is detected, delete everything
+if [ -f gulpfile.js ]; then rm -rf ./*; fi
+
+export APPIUM_ROOT="$(pwd)/build"
+rm -rf ${APPIUM_ROOT}
+mkdir -p ${APPIUM_ROOT}
+
+if [ -d appium-ci-gulper ]
+then
+  echo 'appium-ci-gulper already exists, updating'
+  pushd appium-ci-gulper
+  git fetch origin
+  git reset --hard origin/master
+else
+  echo "appium-ci-gulper doesn't exist, creating"
+  git clone https://github.com/appium/appium-ci-gulper.git
+  pushd appium-ci-gulper
+fi
