@@ -54,22 +54,29 @@ gulp.task('download-scp-build', ['prepare-dirs'], function () {
       var uploadServer = process.env.BUILD_UPLOAD_SERVER;
       var src = path.join('builds', buildJob.jobName, '' + buildJob.buildNumber, 'appium-build.tgz');
       var target = path.join(global.inputDir, 'appium-build.tgz');
-      console.log('downloading via scp:', src);
-      return utils.smartSpawn(
-        'scp',
-        [
-          '-o',
-          "UserKnownHostsFile=/dev/null",
-          '-o',
-          'StrictHostKeyChecking=no',
-          'appium@' + uploadServer + ':' + utils.escapePath(src),
-          target
-        ],
-        {
-          print: 'Download build to: ' + target,
-          cwd: appiumRoot
-        }
-      ).promise;
+      console.log('downloading via rsync:', src);
+
+      return utils.executeShellCommands([
+        'rsync -e \'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no\' ' +
+          "'" + 'appium@' + uploadServer + ':' + utils.escapePath(src) + "' " +
+          "'" + target + "'"
+        ], {cwd: global.appiumRoot});
+
+      //return utils.smartSpawn(
+        //'scp',
+        //[
+          //'-o',
+          //"UserKnownHostsFile=/dev/null",
+          //'-o',
+          //'StrictHostKeyChecking=no',
+          //'appium@' + uploadServer + ':' + utils.escapePath(src),
+          //target
+        //],
+        //{
+          //print: 'Download build to: ' + target,
+          //cwd: appiumRoot
+        //}
+      //).promise;
     });
 });
 
