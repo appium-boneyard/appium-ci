@@ -29,7 +29,7 @@ gulp.task('download-build', ['prepare-dirs'], function () {
         }).first().value();
     }).then(function (buildJob) {
       return utils.downloadS3Artifact(buildJob.jobName, buildJob.buildNumber,
-        'appium-build.bz2', global.inputDir);
+        'appium-build.tgz', global.inputDir);
     });
 });
 
@@ -52,8 +52,8 @@ gulp.task('download-scp-build', ['prepare-dirs'], function () {
         }).first().value();
     }).then(function (buildJob) {
       var uploadServer = process.env.BUILD_UPLOAD_SERVER;
-      var src = path.join('builds', buildJob.jobName, '' + buildJob.buildNumber, 'appium-build.bz2');
-      var target = path.join(global.inputDir, 'appium-build.bz2');
+      var src = path.join('builds', buildJob.jobName, '' + buildJob.buildNumber, 'appium-build.tgz');
+      var target = path.join(global.inputDir, 'appium-build.tgz');
       console.log('downloading via scp:', src);
       return utils.smartSpawn(
         'scp',
@@ -75,8 +75,8 @@ gulp.task('download-scp-build', ['prepare-dirs'], function () {
 
 gulp.task('expand-build' , function function_name() {
   return utils.smartSpawn('tar', [
-      'xfjp',
-      path.resolve(global.inputDir, 'appium-build.bz2'),
+      'xfzp',
+      path.resolve(global.inputDir, 'appium-build.tgz'),
     ], {
       print: 'Expanding build',
       cwd: global.appiumRoot

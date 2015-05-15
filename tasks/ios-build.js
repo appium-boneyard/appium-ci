@@ -35,8 +35,8 @@ gulp.task('run-ios-build',
     return utils.smartSpawn(
       'tar',
       [
-        'cfjp',
-        path.resolve(global.artifactsDir, 'appium-build.bz2'),
+        'cfzp',
+        path.resolve(global.artifactsDir, 'appium-build.tgz'),
         '--exclude=.git',
         '--exclude=artifacts',
         '--exclude=submodules',
