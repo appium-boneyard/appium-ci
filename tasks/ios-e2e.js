@@ -11,7 +11,7 @@ var appiumRoot = global.appiumRoot;
 var argv = global.argv;
 
 gulp.task('run-ios-e2e-worker',
-    ['prepare-dirs'],function () {
+    [/*'prepare-dirs'*/],function () {
   //return runSequence('download-scp-build','expand-build')
     //.then(function () {
       //return utils.smartSpawn('gulp', [
