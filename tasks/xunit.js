@@ -18,7 +18,7 @@ gulp.task('collect-downstream-xunit-results', ['prepare-dirs'],function () {
       "'" + inputDir + "'"
     ]).then(function() {
       return utils.executeShellCommands([
-       'tar xfz ' + utils.escapePath(inputDir) + '/*.tgz'
+       'for TGZ in ' + utils.escapePath(inputDir) + '/*.tgz; do tar xfz "$TGZ"; done'
       ], {cwd: reportsDir});
     });
 });
