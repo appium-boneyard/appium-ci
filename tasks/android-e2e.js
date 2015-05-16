@@ -43,7 +43,7 @@ gulp.task('run-android-e2e-worker',
       }).promise;
     }).fin(function() {
       return utils.executeShellCommands([
-        'cp -R ' + utils.wrapPath(global.reportsDir) + '/* ' + utils.wrapPath(global.artifactsDir) + '/'
+        'cp -R ' + utils.escapePath(global.reportsDir) + '/* ' + utils.escapePath(global.artifactsDir) + '/'
       ]);
     });
 });

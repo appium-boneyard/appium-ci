@@ -22,9 +22,9 @@ gulp.task('run-android-build',
     // Dirty workaround
     console.log('Replacing ApiDemo symlink by real directory');
     return utils.executeShellCommands([
-      'rm -rf ' + utils.wrapPath(path.resolve(appiumRoot, 'sample-code/apps/ApiDemos')),
-      'mv ' + utils.wrapPath(path.resolve(appiumRoot, 'submodules/ApiDemos')) +
-        ' ' + utils.wrapPath(path.resolve(appiumRoot, 'sample-code/apps/'))
+      'rm -rf ' + utils.escapePath(path.resolve(appiumRoot, 'sample-code/apps/ApiDemos')),
+      'mv ' + utils.escapePath(path.resolve(appiumRoot, 'submodules/ApiDemos')) +
+        ' ' + utils.escapePath(path.resolve(appiumRoot, 'sample-code/apps/'))
     ]);
   }).then(function () {
     return utils.smartSpawn(

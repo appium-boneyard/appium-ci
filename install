@@ -5,7 +5,7 @@
 if [ -f gulpfile.js ]; then rm -rf ./*; fi
 
 export APPIUM_ROOT="$(pwd)/build"
-rm -rf ${APPIUM_ROOT}
+rm -rf "${APPIUM_ROOT}"
 mkdir -p "${APPIUM_ROOT}"
 
 if [ -d appium-ci-gulper ]
