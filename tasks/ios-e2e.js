@@ -43,9 +43,7 @@ gulp.task('run-ios-e2e-worker',
         env: env
       }).promise;
     }).fin(function() {
-      return utils.executeShellCommands([
-        'cp -R ' + utils.escapePath(global.reportsDir) + '/* ' + utils.escapePath(global.artifactsDir) + '/'
-      ]);
+      return utils.uploadReports();
     });
 });
 

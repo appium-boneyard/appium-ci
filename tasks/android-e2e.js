@@ -24,10 +24,11 @@ gulp.task('run-android-e2e-worker',
       }).promise;
     }).then(function () {
       var env = _.clone(process.env);
+      var reportBase = 'report' + ((process.env.BUILD_NUMBER) ? '-' + process.env.BUILD_NUMBER : '');
       env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
       env.JUNIT_REPORT_PATH = path.resolve(
           global.reportsDir,
-          'report' + ((env.BUILD_NUMBER) ? '-' + env.BUILD_NUMBER : '') +'.xml');
+          reportBase +'.xml');
       env.JUNIT_REPORT_STACK = 1;
 
       return utils.smartSpawn('gulp', [
@@ -42,9 +43,7 @@ gulp.task('run-android-e2e-worker',
         env: env
       }).promise;
     }).fin(function() {
-      return utils.executeShellCommands([
-        'cp -R ' + utils.escapePath(global.reportsDir) + '/* ' + utils.escapePath(global.artifactsDir) + '/'
-      ]);
+      return utils.uploadReports();
     });
 });
 
