@@ -5,14 +5,14 @@ var gulp = require('gulp'),
 
 gulp.task('prepare-dirs', function() {
   return utils.executeShellCommands([
-    'rm -rf ' + utils.wrapPath(global.artifactsDir),
-    'mkdir -p ' + utils.wrapPath(global.artifactsDir),
-    'rm -rf ' + utils.wrapPath(global.reportsDir),
-    'mkdir -p ' + utils.wrapPath(global.reportsDir),
-    'rm -rf ' + utils.wrapPath(global.outputDir),
-    'mkdir -p ' + utils.wrapPath(global.outputDir),
-    'rm -rf ' + utils.wrapPath(global.inputDir),
-    'mkdir -p ' + utils.wrapPath(global.inputDir)
+    'rm -rf ' + "'" + utils.wrapPath(global.artifactsDir) + "'",
+    'mkdir -p ' + "'"  + utils.wrapPath(global.artifactsDir) + "'",
+    'rm -rf ' + "'"  + utils.wrapPath(global.reportsDir) + "'",
+    'mkdir -p ' + "'"  + utils.wrapPath(global.reportsDir) + "'",
+    'rm -rf ' + "'"  + utils.wrapPath(global.outputDir) + "'",
+    'mkdir -p ' + "'"  + utils.wrapPath(global.outputDir) + "'",
+    'rm -rf ' + "'"  + utils.wrapPath(global.inputDir) + "'",
+    'mkdir -p ' + "'"  + utils.wrapPath(global.inputDir) + "'"
    ]);
 });
 
