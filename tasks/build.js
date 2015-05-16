@@ -61,22 +61,6 @@ gulp.task('download-scp-build', ['prepare-dirs'], function () {
           "'" + 'appium@' + uploadServer + ':' + utils.escapePath(src) + "' " +
           "'" + target + "'"
         ], {cwd: global.appiumRoot});
-
-      //return utils.smartSpawn(
-        //'scp',
-        //[
-          //'-o',
-          //"UserKnownHostsFile=/dev/null",
-          //'-o',
-          //'StrictHostKeyChecking=no',
-          //'appium@' + uploadServer + ':' + utils.escapePath(src),
-          //target
-        //],
-        //{
-          //print: 'Download build to: ' + target,
-          //cwd: appiumRoot
-        //}
-      //).promise;
     });
 });
 
