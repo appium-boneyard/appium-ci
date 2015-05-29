@@ -1,6 +1,6 @@
 {
   "name": "appium-ci",
-  "description": "Description goes here.",
+  "description": "Appium CI utils.",
   "keywords": [
     "appium"
   ],
@@ -18,7 +18,7 @@
     "node"
   ],
   "main": "./build/index.js",
-  "bin": {},
+  "bin": {"appium_ci_setup": "./setup"},
   "directories": {
     "lib": "lib"
   },

@@ -1,6 +1,5 @@
 // transpile:main
 
-import {default as sample} from './lib/sample';
+import {Emulator as AndroidEmulator} from './lib/android-tools';
 
-export {sample};
-
+export {AndroidEmulator};
