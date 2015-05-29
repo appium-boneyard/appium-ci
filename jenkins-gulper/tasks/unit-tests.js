@@ -5,8 +5,6 @@ var gulp = require('gulp'),
     path = require('path'),
     _ = require('underscore');
 
-var appiumRoot = global.appiumRoot;
-
 gulp.task('run-unit-tests',
     ['prepare-dirs', 'appium-npm-install'],function () {
 
@@ -18,11 +16,11 @@ gulp.task('run-unit-tests',
   env.JUNIT_REPORT_STACK = 1;
 
   return utils.smartSpawn(
-    path.resolve(appiumRoot, 'node_modules/.bin/gulp'),
+    path.resolve(global.appiumRoot, 'node_modules/.bin/gulp'),
     ['--color'],
     {
       print: 'Running Appium unit tests',
-      cwd: appiumRoot,
+      cwd: global.appiumRoot,
       env: env,
    }
   ).promise;

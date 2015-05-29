@@ -7,10 +7,8 @@ var gulp = require('gulp'),
     _ = require('underscore'),
     path = require('path');
 
-var argv = global.argv;
-
 gulp.task('download-build', ['prepare-dirs'], function () {
-  var m = argv.downloadBuild.match(/(.*)\/(.*)/);
+  var m = global.argv.downloadBuild.match(/(.*)\/(.*)/);
   var jobName = m[1];
   var buildNumber = m[2];
 
@@ -33,7 +31,7 @@ gulp.task('download-build', ['prepare-dirs'], function () {
 });
 
 gulp.task('download-scp-build', ['prepare-dirs'], function () {
-  var m = argv.downloadBuild.match(/(.*)\/(.*)/);
+  var m = global.argv.downloadBuild.match(/(.*)\/(.*)/);
   var jobName = m[1];
   var buildNumber = m[2];
 

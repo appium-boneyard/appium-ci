@@ -7,9 +7,6 @@ var gulp = require('gulp'),
     path = require('path'),
     _ = require('underscore');
 
-var appiumRoot = global.appiumRoot;
-var argv = global.argv;
-
 gulp.task('run-android-e2e-worker',
     ['prepare-dirs'],function () {
   return runSequence('download-scp-build','expand-build')
@@ -17,10 +14,10 @@ gulp.task('run-android-e2e-worker',
       return utils.smartSpawn('gulp', [
         'show-android-e2e-tests-split',
         '--color',
-        '--testSplit=' + argv.numOfSplits
+        '--testSplit=' + global.argv.numOfSplits
       ], {
         print: 'Showing test split',
-        cwd: appiumRoot
+        cwd: global.appiumRoot
       }).promise;
     }).then(function () {
       var env = _.clone(process.env);
@@ -34,12 +31,12 @@ gulp.task('run-android-e2e-worker',
       return utils.smartSpawn('gulp', [
         'run-android-e2e',
         '--color',
-        '--avd=' + argv.avd,
-        '--testSplit=' + argv.numOfSplits,
-        '--testGroup=' + argv.split
+        '--avd=' + global.argv.avd,
+        '--testSplit=' + global.argv.numOfSplits,
+        '--testGroup=' + global.argv.split
       ], {
         print: 'Showing test split',
-        cwd: appiumRoot,
+        cwd: global.appiumRoot,
         env: env
       }).promise;
     }).fin(function () {

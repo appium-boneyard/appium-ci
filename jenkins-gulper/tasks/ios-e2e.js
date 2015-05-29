@@ -7,9 +7,6 @@ var gulp = require('gulp'),
     path = require('path'),
     _ = require('underscore');
 
-var appiumRoot = global.appiumRoot;
-var argv = global.argv;
-
 gulp.task('run-ios-e2e-worker',
     ['prepare-dirs'],function () {
   return runSequence('download-scp-build','expand-build')
@@ -17,10 +14,10 @@ gulp.task('run-ios-e2e-worker',
       return utils.smartSpawn('gulp', [
         'show-ios-e2e-tests-split',
         '--color',
-        '--testSplit=' + argv.numOfSplits
+        '--testSplit=' + global.argv.numOfSplits
       ], {
         print: 'Showing test split',
-        cwd: appiumRoot
+        cwd: global.appiumRoot
       }).promise;
     }).then(function () {
       return utils.setIosSimulatorScale();
@@ -35,11 +32,11 @@ gulp.task('run-ios-e2e-worker',
       return utils.smartSpawn('gulp', [
         'run-ios-e2e',
         '--color',
-        '--testSplit=' + argv.numOfSplits,
-        '--testGroup=' + argv.split
+        '--testSplit=' + global.argv.numOfSplits,
+        '--testGroup=' + global.argv.split
       ], {
         print: 'Showing test split',
-        cwd: appiumRoot,
+        cwd: global.appiumRoot,
         env: env
       }).promise;
     }).fin(function () {

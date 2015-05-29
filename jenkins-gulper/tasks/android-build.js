@@ -4,25 +4,23 @@ var gulp = require('gulp'),
     utils = require('../lib/utils'),
     path = require('path');
 
-var appiumRoot = global.appiumRoot;
-
 gulp.task('run-android-build',
     ['prepare-dirs'],function () {
 
   return utils.smartSpawn(
-    path.resolve(appiumRoot, 'reset.sh'),
+    path.resolve(global.appiumRoot, 'reset.sh'),
     ['--android', '--dev', '--hardcore', '--verbose', '--no-npmlink'],
     {
       print: 'Running reset.sh',
-      cwd: appiumRoot,
+      cwd: global.appiumRoot,
     }
   ).promise.then(function () {
     // Dirty workaround
     console.log('Replacing ApiDemo symlink by real directory');
     return utils.executeShellCommands([
-      'rm -rf ' + utils.escapePath(path.resolve(appiumRoot, 'sample-code/apps/ApiDemos')),
-      'mv ' + utils.escapePath(path.resolve(appiumRoot, 'submodules/ApiDemos')) +
-        ' ' + utils.escapePath(path.resolve(appiumRoot, 'sample-code/apps/'))
+      'rm -rf ' + utils.escapePath(path.resolve(global.appiumRoot, 'sample-code/apps/ApiDemos')),
+      'mv ' + utils.escapePath(path.resolve(global.appiumRoot, 'submodules/ApiDemos')) +
+        ' ' + utils.escapePath(path.resolve(global.appiumRoot, 'sample-code/apps/'))
     ]);
   }).then(function () {
     return utils.smartSpawn(
@@ -37,7 +35,7 @@ gulp.task('run-android-build',
       ],
       {
         print: 'Archiving build',
-        cwd: appiumRoot,
+        cwd: global.appiumRoot,
       }
     ).promise;
   }).then(function () {

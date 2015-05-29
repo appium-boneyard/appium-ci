@@ -6,8 +6,6 @@ var gulp = require('gulp'),
     // uploadToS3 = require("../lib/s3-fast-upload");
     // _ = require('underscore');
 
-var appiumRoot = global.appiumRoot;
-
 gulp.task('run-ios-build',
     ['prepare-dirs'],function () {
   return utils.smartSpawn(
@@ -23,11 +21,11 @@ gulp.task('run-ios-build',
       'npm cache clean']);
   }).then(function () {
     return utils.smartSpawn(
-      path.resolve(appiumRoot, 'reset.sh'),
+      path.resolve(global.appiumRoot, 'reset.sh'),
       ['--ios', '--dev', '--hardcore', '--verbose', '--no-npmlink'],
       {
         print: 'Running reset.sh',
-        cwd: appiumRoot,
+        cwd: global.appiumRoot,
       }
     ).promise;
   }).then(function () {
@@ -43,7 +41,7 @@ gulp.task('run-ios-build',
       ],
       {
         print: 'Archiving build',
-        cwd: appiumRoot,
+        cwd: global.appiumRoot,
       }
     ).promise;
   }).then(function () {
