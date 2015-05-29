@@ -24,12 +24,13 @@ describe('android tools', () => {
   });
 
   it('launch emu',async () => {
-    let emu = new EmuManager('myavd', {initWait: 500});
-    let child = emu.start();
+    let emu;
     try {
+      emu = new EmuManager('myavd', {initWait: 500});
+      emu.start();
       await emu.waitTillReady();
     } finally {
-      child.kill();
+      if (emu) emu.stop();
     }
   });
 
