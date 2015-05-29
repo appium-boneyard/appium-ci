@@ -8,14 +8,15 @@ export APPIUM_ROOT="$(pwd)/build"
 rm -rf "${APPIUM_ROOT}"
 mkdir -p "${APPIUM_ROOT}"
 
-if [ -d appium-ci-gulper ]
+if [ -d appium-ci ]
 then
-  echo 'appium-ci-gulper already exists, updating'
-  pushd appium-ci-gulper
+  echo 'appium-ci already exists, updating'
+  pushd appium-ci
   git fetch origin
   git reset --hard origin/master
+  popd
 else
-  echo "appium-ci-gulper doesn't exist, creating"
-  git clone https://github.com/appium/appium-ci-gulper.git
-  pushd appium-ci-gulper
+  echo "appium-ci doesn't exist, creating"
+  git clone https://github.com/appium/appium-ci.git
 fi
+pushd appium-ci/jenkins-tools

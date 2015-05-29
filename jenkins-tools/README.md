@@ -1,4 +1,5 @@
-# appium-ci-gulper
+# Jenkins Tools
+
 Standalone gulp wrapper for appium ci.
 
 The tasks in this package supervise the CI process including:
