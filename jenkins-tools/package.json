@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Appium Commiters",
-  "license": "Apache 2",
+  "license": "Apache-2.0",
   "dependencies": {
     "gulp": "^3.8.11",
     "q": "^1.1.2",
