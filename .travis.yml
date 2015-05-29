@@ -3,4 +3,4 @@ node_js:
   - "0.12"
 script:
   - npm test
-  - cd jenkins-tools && npm install && npm test
+  - cd jenkins-gulper && npm install && npm test

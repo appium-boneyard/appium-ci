@@ -19,4 +19,4 @@ else
   echo "appium-ci doesn't exist, creating"
   git clone https://github.com/appium/appium-ci.git
 fi
-pushd appium-ci/jenkins-tools
+pushd appium-ci/jenkins-gulper

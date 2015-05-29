@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     boilerplate = require('appium-gulp-plugins')
       .boilerplate.use(gulp);
 boilerplate({
-  build: 'jenkins-tools',
+  build: 'jenkins-gulper',
   files: ['**/*.js','!node_modules/**'],
   test: false,
   transpile: false});
