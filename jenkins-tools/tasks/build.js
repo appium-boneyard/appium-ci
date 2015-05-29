@@ -8,7 +8,6 @@ var gulp = require('gulp'),
     path = require('path');
 
 var argv = global.argv;
-var appiumRoot = global.appiumRoot;
 
 gulp.task('download-build', ['prepare-dirs'], function () {
   var m = argv.downloadBuild.match(/(.*)\/(.*)/);
@@ -64,7 +63,7 @@ gulp.task('download-scp-build', ['prepare-dirs'], function () {
     });
 });
 
-gulp.task('expand-build' , function function_name() {
+gulp.task('expand-build', ['global'] , function function_name() {
   return utils.smartSpawn('tar', [
       'xfzp',
       path.resolve(global.inputDir, 'appium-build.tgz'),

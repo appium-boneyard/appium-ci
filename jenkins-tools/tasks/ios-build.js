@@ -7,7 +7,6 @@ var gulp = require('gulp'),
     // _ = require('underscore');
 
 var appiumRoot = global.appiumRoot;
-var uploadServer = process.env.BUILD_UPLOAD_SERVER;
 
 gulp.task('run-ios-build',
     ['prepare-dirs'],function () {

@@ -1,19 +1,12 @@
 "use strict";
-
-var path = require('path');
-
-global.argv = require('yargs').argv;
-global.appiumRoot = process.env.APPIUM_ROOT;
-global.artifactsDir = path.resolve(process.env.APPIUM_ROOT, 'artifacts');
-global.reportsDir = path.resolve(process.env.APPIUM_ROOT, 'reports');
-global.outputDir = path.resolve(process.env.APPIUM_ROOT, 'output');
-global.inputDir = path.resolve(process.env.APPIUM_ROOT, 'input');
-global.sideDisk = '/Volumes/SIDE';
-global.sideSims = path.resolve(global.sideDisk, 'sims');
-global.ciRootUrl = process.env.HUDSON_URL;
-
-console.log('global.appiumRoot -->', global.appiumRoot);
-console.log('global.ciRootUrl -->', global.ciRootUrl);
+var gulp = require('gulp'),
+    boilerplate = require('appium-gulp-plugins')
+      .boilerplate.use(gulp);
+boilerplate({
+  build: 'jenkins-tools',
+  files: ['**/*.js','!node_modules/**'],
+  test: false,
+  transpile: false});
 
 require('./tasks/dev');
 require('./tasks/commons');

@@ -2,11 +2,9 @@
 
 var gulp = require('gulp'),
     utils = require('../lib/utils'),
-    path = require('path'),
-    _ = require('underscore');
+    path = require('path');
 
 var appiumRoot = global.appiumRoot;
-var uploadServer = process.env.BUILD_UPLOAD_SERVER;
 
 gulp.task('run-android-build',
     ['prepare-dirs'],function () {

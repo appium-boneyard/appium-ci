@@ -1,9 +1,6 @@
 "use strict";
 
 var gulp = require('gulp'),
-    Q = require('q'),
-    _ = require('underscore'),
-    request = Q.denodeify(require('request')),
     utils = require('../lib/utils'),
     path = require('path');
 

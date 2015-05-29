@@ -4,11 +4,12 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp once"
   },
   "author": "Appium Commiters",
   "license": "Apache-2.0",
   "dependencies": {
+    "appium-gulp-plugins": "^1.1.8",
     "gulp": "^3.8.11",
     "q": "^1.1.2",
     "request": "^2.53.0",
