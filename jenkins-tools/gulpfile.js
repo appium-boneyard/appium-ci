@@ -8,7 +8,6 @@ boilerplate({
   test: false,
   transpile: false});
 
-require('./tasks/dev');
 require('./tasks/commons');
 require('./tasks/build');
 require('./tasks/unit-tests');
