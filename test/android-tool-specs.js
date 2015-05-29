@@ -1,6 +1,6 @@
 // transpile:mocha
 
-import { EmuManager } from '../lib/android-tools';
+import { Emulator } from '../lib/android-tools';
 import utils from '../lib/utils';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
@@ -26,7 +26,7 @@ describe('android tools', () => {
   it('launch emu',async () => {
     let emu;
     try {
-      emu = new EmuManager('myavd', {initWait: 500});
+      emu = new Emulator('myavd', {initWait: 500});
       emu.start();
       await emu.waitTillReady();
     } finally {
