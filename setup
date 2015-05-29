@@ -15,6 +15,11 @@ fi
 echo "configuring node"
 nvm use stable
 
+# install deps
+{ set -x; } 2>/dev/null
+npm install >> npm-install.log 2>&1
+{ set +x; } 2>/dev/null
+
 # installing global gulp
 npm install -g gulp
 
