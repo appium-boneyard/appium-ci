@@ -42,7 +42,7 @@ gulp.task('run-android-e2e-worker',
         cwd: appiumRoot,
         env: env
       }).promise;
-    }).fin(function() {
+    }).fin(function () {
       return utils.uploadReports();
     });
 });

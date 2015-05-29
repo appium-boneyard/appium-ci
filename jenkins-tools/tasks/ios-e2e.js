@@ -22,7 +22,7 @@ gulp.task('run-ios-e2e-worker',
         print: 'Showing test split',
         cwd: appiumRoot
       }).promise;
-    }).then(function() {
+    }).then(function () {
       return utils.setIosSimulatorScale();
     }).then(function () {
       var env = _.clone(process.env);
@@ -42,7 +42,7 @@ gulp.task('run-ios-e2e-worker',
         cwd: appiumRoot,
         env: env
       }).promise;
-    }).fin(function() {
+    }).fin(function () {
       return utils.uploadReports();
     });
 });

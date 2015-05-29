@@ -6,7 +6,7 @@ var s3 = require('s3'),
   _ = require('underscore'),
   Q = require('q');
 
-module.exports = function(bucket, localFile, key) {
+module.exports = function (bucket, localFile, key) {
   var deferred = Q.defer();
 
   var client = s3.createClient({
@@ -33,7 +33,7 @@ module.exports = function(bucket, localFile, key) {
   };
 
   var uploader = client.uploadFile(params);
-  uploader.on('error', function(err) {
+  uploader.on('error', function (err) {
     console.error("unable to upload:", err.stack);
     deferred.reject("S3 upload failed.");
   });
@@ -45,7 +45,7 @@ module.exports = function(bucket, localFile, key) {
 
   uploader.on('progress', _.throttle(printProgress, 5000));
 
-  uploader.on('end', function() {
+  uploader.on('end', function () {
     printProgress();
     console.log("done uploading");
     deferred.resolve();

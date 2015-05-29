@@ -17,7 +17,7 @@ try {
   gulp.task('lint', ['jshint']);
 } catch(ign) {}
 
-gulp.task('hello-world', function() {
+gulp.task('hello-world', function () {
   console.log('Hello World');
 });
 

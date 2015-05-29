@@ -15,10 +15,10 @@ describe('android tools', () => {
     let _spawn = utils.spawn;
     let _exec = utils.exec;
 
-    sinon.stub(utils, "spawn", function() {
+    sinon.stub(utils, "spawn", function () {
       return _spawn('sleep', ['300']);
     });
-    sinon.stub(utils, "exec", function() {
+    sinon.stub(utils, "exec", function () {
       return _exec('echo 1');
     });
   });

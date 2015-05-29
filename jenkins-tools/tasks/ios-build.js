@@ -18,11 +18,11 @@ gulp.task('run-ios-build',
       print: 'Configuring xCode 6.1.1',
       cwd: global.sideSims,
     }
-  ).promise.then(function() {
+  ).promise.then(function () {
     return utils.executeShellCommands([
       'rm -rf node_modules',
       'npm cache clean']);
-  }).then(function() {
+  }).then(function () {
     return utils.smartSpawn(
       path.resolve(appiumRoot, 'reset.sh'),
       ['--ios', '--dev', '--hardcore', '--verbose', '--no-npmlink'],
@@ -47,7 +47,7 @@ gulp.task('run-ios-build',
         cwd: appiumRoot,
       }
     ).promise;
-  }).then(function() {
+  }).then(function () {
     return utils.uploadBuild();
   });
 });

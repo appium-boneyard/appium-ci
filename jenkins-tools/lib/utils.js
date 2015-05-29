@@ -20,7 +20,7 @@ function smartSpawn(bin, args, opts) {
   delete opts.logFile;
   var uncoloredLogFile = opts.uncoloredLogFile;
   delete opts.uncoloredLogFile;
-  if(opts.print) console.log(opts.print);
+  if (opts.print) console.log(opts.print);
   delete opts.print;
 
   // forced opts
@@ -35,18 +35,18 @@ function smartSpawn(bin, args, opts) {
 
   proc.stdout.pipe(process.stdout);
   proc.stderr.pipe(process.stderr);
-  if(logFile) {
+  if (logFile) {
     var fsStream = fs.createWriteStream(logFile);
     proc.stdout.pipe(fsStream);
     proc.stderr.pipe(fsStream);
   }
-  if(uncoloredLogFile) {
+  if (uncoloredLogFile) {
     var uncoloredFsStream = fs.createWriteStream(uncoloredLogFile);
     proc.stdout.pipe(uncolor()).pipe(uncoloredFsStream);
     proc.stderr.pipe(uncolor()).pipe(uncoloredFsStream);
   }
   proc.on('close', function (code) {
-    if(code === 0) {
+    if (code === 0) {
       deferred.resolve();
     } else {
       deferred.reject(new Error('spawn failed with code:' + code));
@@ -57,7 +57,7 @@ function smartSpawn(bin, args, opts) {
 }
 
 var wrapPath = function (path) {
-  if(!path.match('^\'')) {
+  if (!path.match('^\'')) {
     path = '\'' + path + '\'';
   }
   return path;
@@ -66,7 +66,7 @@ var wrapPath = function (path) {
 var executeShellCommands = function (commands, opts) {
   opts = opts || {};
   var seq = _(commands).map(function (command) {
-    return function() {
+    return function () {
       return exec(command, opts);
     };
   });
@@ -82,7 +82,7 @@ function downloadS3Artifact(jobName, buildNumber, artifact, targetDir) {
 function downloadArtifact(jobName, buildNumber, artifact, targetDir) {
   var url = global.ciRootUrl + 'job/' + encode(jobName) + '/' + buildNumber + '/artifact/' + artifact;
   console.log('Retrieving url -->', url);
-  return smartSpawn('wget', ['-nv', url], {cwd: targetDir}).promise.catch(function(err) {
+  return smartSpawn('wget', ['-nv', url], {cwd: targetDir}).promise.catch(function (err) {
     console.log('err -->', err);
     throw err;
   });
@@ -117,7 +117,7 @@ function uploadReports() {
   return executeShellCommands([
     'tar cfz ' + escapePath(global.outputDir) + '/' + reportBase + '.tgz .',
   ], {cwd: global.reportsDir}).then(function () {
-    if(process.env.E2E_JOB_NAME) {
+    if (process.env.E2E_JOB_NAME) {
       return executeShellCommands([
         'ssh -q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ' +
           'appium@' + uploadServer + ' mkdir -p ' + "'" + escapePath(dir) + "'",

@@ -20,7 +20,7 @@ describe('android tools', function () {
       emu.start();
       await emu.waitTillReady();
     } finally {
-      if(emu) emu.stop();
+      if (emu) emu.stop();
     }
   });
 

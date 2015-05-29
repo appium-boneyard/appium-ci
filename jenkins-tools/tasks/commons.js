@@ -3,7 +3,7 @@
 var gulp = require('gulp'),
     utils = require('../lib/utils');
 
-gulp.task('prepare-dirs', function() {
+gulp.task('prepare-dirs', function () {
   return utils.executeShellCommands([
     'rm -rf ' + utils.escapePath(global.artifactsDir),
     'mkdir -p ' + utils.escapePath(global.artifactsDir),

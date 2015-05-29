@@ -16,7 +16,7 @@ gulp.task('collect-downstream-xunit-results', ['prepare-dirs'],function () {
     'rsync -e \'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no\' ' +
       "'" + 'appium@' + uploadServer + ':' + '~/' + utils.escapePath(dir) + "/*.tgz' " +
       "'" + inputDir + "'"
-    ]).then(function() {
+    ]).then(function () {
       return utils.executeShellCommands([
        'for TGZ in ' + utils.escapePath(inputDir) + '/*.tgz; do tar xfz "$TGZ"; done'
       ], {cwd: reportsDir});

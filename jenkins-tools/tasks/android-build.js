@@ -42,7 +42,7 @@ gulp.task('run-android-build',
         cwd: appiumRoot,
       }
     ).promise;
-  }).then(function() {
+  }).then(function () {
     return utils.uploadBuild();
    });
 });
