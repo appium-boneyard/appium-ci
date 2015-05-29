@@ -8,7 +8,7 @@ import 'mochawait';
 chai.should();
 chai.use(chaiAsPromised);
 
-describe('android tools', function () {
+describe('e2e android tools', function () {
   this.timeout(300000);
   before(async () => {
   });
