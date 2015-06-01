@@ -29,4 +29,5 @@ export DISPLAY=:1
 # ci config
 export CI=1
 
+echo "in setup CI -> ${CI}"
 { set +x; } 2>/dev/null
