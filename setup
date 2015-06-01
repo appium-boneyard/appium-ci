@@ -25,3 +25,6 @@ npm install -g gulp
 
 # display setting
 export DISPLAY=:1
+
+# ci config
+export CI=1
