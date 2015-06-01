@@ -28,3 +28,4 @@ export DISPLAY=:1
 
 # ci config
 export CI=1
+
