@@ -11,7 +11,8 @@ chai.use(chaiAsPromised);
 describe('sample', () => {
   it('should-work',async () => {
     let res = await listDevices();
-    res.should.equal('123');
+    res.should.have.length(1);
+    res[0].should.include('emulator');
   });
 });
 
