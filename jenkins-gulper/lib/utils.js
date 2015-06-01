@@ -137,6 +137,17 @@ function setIosSimulatorScale() {
   ]);
 }
 
+function configureXcode (xCodeVersion) {
+  var bin = path.resolve(global.sideSims, 'configure.sh');
+  return exec(bin + ' ' + xCodeVersion);
+}
+
+function resetSims () {
+  var bin = path.resolve(global.sideSims, 'reset-sims.sh');
+  return exec(bin);
+}
+
+
 exports.downloadS3Artifact = downloadS3Artifact;
 exports.downloadArtifact = downloadArtifact;
 exports.encode = encode;
@@ -147,3 +158,5 @@ exports.escapePath = escapePath;
 exports.uploadBuild = uploadBuild;
 exports.uploadReports = uploadReports;
 exports.setIosSimulatorScale = setIosSimulatorScale;
+exports.configureXcode = configureXcode;
+exports.resetSims = resetSims;

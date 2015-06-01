@@ -20,7 +20,11 @@ gulp.task('run-ios-e2e-worker',
         cwd: global.appiumRoot
       }).promise;
     }).then(function () {
-      return utils.setIosSimulatorScale();
+      return utils.configureXcode('6.1.1');
+    }).then(function () {
+       return utils.resetSims();
+    }).then(function () {
+       return utils.setIosSimulatorScale();
     }).then(function () {
       var env = _.clone(process.env);
       env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
