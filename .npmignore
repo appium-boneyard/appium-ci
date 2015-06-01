@@ -2,3 +2,4 @@ node_modules
 *.log
 jenkins-gulper
 sample-android-project
+sample-ios-project
