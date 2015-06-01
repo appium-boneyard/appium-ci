@@ -15,13 +15,13 @@ fi
 echo "configuring node"
 nvm use stable
 
-# install deps
 { set -x; } 2>/dev/null
+
+# install deps
 npm install >> npm-install.log 2>&1
-{ set +x; } 2>/dev/null
 
 # installing global gulp
-npm install -g gulp
+npm install -g gulp >> npm-install.log 2>&1
 
 # display setting
 export DISPLAY=:1
@@ -29,4 +29,4 @@ export DISPLAY=:1
 # ci config
 export CI=1
 
-# do not delete me
+{ set +x; } 2>/dev/null
