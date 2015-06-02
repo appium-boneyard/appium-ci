@@ -12,8 +12,7 @@ describe('sample', () => {
   it('should-work',async () => {
     let res = await listDevices();
     console.log('res ->', res);
-    //res.should.have.length(1);
-    //res[0].should.include('emulator');
+    res.should.have.length.above(5);
   });
 });
 
