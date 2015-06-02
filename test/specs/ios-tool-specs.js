@@ -45,6 +45,11 @@ describe('ios tools', () => {
     await iosTools.resetSims();
   });
 
+  it('kill all',async () => {
+    await iosTools.killAll();
+    await iosTools.killAll('ls');
+    await iosTools.killAll(['ls', 'echo']);
+  });
 
   after(async () => {
     utils.exec.restore();
