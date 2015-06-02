@@ -11,6 +11,8 @@ var e2eFiles = _(argv).pick('android', 'ios').map(function (arg) {
   return '${testDir}/**/' + arg  + '/*-e2e-specs.js';
 }).value();
 
+console.log('using e2eFiles ->', e2eFiles);
+
 boilerplate({
   build: 'appium-ci',
   jscs: false,
