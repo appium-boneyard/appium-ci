@@ -11,7 +11,7 @@ boilerplate({
   build: 'sample-android-project',
   jscs: false,
   e2eTest: _.defaults({
-    xCode: true,
+    ios: true,
     xCodeVersion: argv.xcodeVersion || '6.1.1'
   }, DEFAULTS.e2eTest)
 });
