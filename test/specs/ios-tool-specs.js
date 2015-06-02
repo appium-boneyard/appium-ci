@@ -29,7 +29,7 @@ describe('ios tools', () => {
   });
 
   it('spawn as current user',async () => {
-    let proc = await iosTools.spawnAsUser('bob', 'ls', ['-l']);
+    let proc = await iosTools.spawnAsUser('ls', ['-l']);
     proc.kill();
   });
 
