@@ -18,6 +18,7 @@ nvm use stable
 { set -x; } 2>/dev/null
 
 # install deps
+rm -rf node_modules
 npm install  > npm-install.log 2>&1
 npm update  >> npm-install.log 2>&1
 
