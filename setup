@@ -18,10 +18,11 @@ nvm use stable
 { set -x; } 2>/dev/null
 
 # install deps
-npm install  # > npm-install.log 2>&1
+npm install  > npm-install.log 2>&1
+npm update  > npm-install.log 2>&1
 
 # installing global gulp
-npm install -g gulp # >> npm-install.log 2>&1
+npm install -g gulp >> npm-install.log 2>&1
 
 # display setting
 export DISPLAY=:1
