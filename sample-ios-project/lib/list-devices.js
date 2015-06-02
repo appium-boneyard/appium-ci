@@ -7,7 +7,7 @@ async function listDevices() {
   return _(lines).filter((l) => {
     return !(l.trim().length === 0 || l.match(/Known Devices/));
   }).map((l) => {
-    return l.trim().match(/^(.*)\s\(/)[1];
+    return l.trim().match( /^(.*?)\s[\(\[]/ )[1];
   }).value();
 }
 

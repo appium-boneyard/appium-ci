@@ -17,6 +17,7 @@ describe('list devices', () => {
         'Known Devices: \n' +
         'Resizable iPad (8.3 Simulator) [B4094C56-62E0-4C7C-AE32-C9A620FA49C2]\n' +
         'iPad Air (8.3 Simulator) [349366CE-E9E3-4BA0-8CEA-CF3EF9DF458E]\n' +
+        'iPad Air [349366CE-E9E3-4BA0-8CEA-CF3EF9DF458E]\n' +
         '\n\n', null];
     });
   });
@@ -25,8 +26,9 @@ describe('list devices', () => {
   });
   it('should-work',async () => {
     let res = await listDevices();
-    res.should.have.length(2);
-    res[1].should.include('iPad');
-  });
+    res.should.have.length(3);
+    res[1].should.equal('iPad Air');
+    res[2].should.equal('iPad Air');
+   });
 });
 
