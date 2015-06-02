@@ -19,7 +19,7 @@ nvm use stable
 
 # install deps
 npm install  > npm-install.log 2>&1
-npm update  > npm-install.log 2>&1
+npm update  >> npm-install.log 2>&1
 
 # installing global gulp
 npm install -g gulp >> npm-install.log 2>&1
