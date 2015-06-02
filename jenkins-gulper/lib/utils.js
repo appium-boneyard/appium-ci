@@ -138,11 +138,13 @@ function setIosSimulatorScale() {
 }
 
 function configureXcode (xCodeVersion) {
+  console.log('Configuring XCode.');
   var bin = path.resolve(global.sideSims, 'configure.sh');
   return exec(bin + ' ' + xCodeVersion);
 }
 
 function resetSims () {
+  console.log('Resetting sims.');
   var bin = path.resolve(global.sideSims, 'reset-sims.sh');
   return exec(bin);
 }
