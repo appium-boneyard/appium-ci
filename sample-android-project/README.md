@@ -19,7 +19,7 @@ to use the yargs package to configure the android emulator using command line pa
 
 ```
 #!/bin/bash -le
-rm setup && wget https://raw.githubusercontent.com/appium/appium-ci/master/setup && source setup
+rm -f setup && wget https://raw.githubusercontent.com/appium/appium-ci/master/setup && source setup
 gulp test
 gulp e2e-test --emu --avd=NEXUS_S_18_X86
 ```
