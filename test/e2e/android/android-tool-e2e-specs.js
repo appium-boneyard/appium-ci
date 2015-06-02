@@ -1,6 +1,6 @@
 // transpile:mocha
 
-import { AndroidEmulator } from '..';
+import { AndroidEmulator } from '../../..';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mochawait';

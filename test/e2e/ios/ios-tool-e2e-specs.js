@@ -1,6 +1,6 @@
 // transpile:mocha
 
-import { iosTools } from '..';
+import { iosTools } from '../../..';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mochawait';
