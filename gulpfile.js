@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 var argv = require('yargs').argv;
 
 var e2eFiles = _(argv).pick('android', 'ios').map(function (v, k) {
-  return '${testDir}/' + k  + '/*-e2e-specs.js';
+  return '${testDir}/e2e/' + k + '/*-e2e-specs.js';
 }).value();
 
 console.log('using e2eFiles ->', e2eFiles);
