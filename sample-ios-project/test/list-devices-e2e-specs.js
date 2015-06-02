@@ -1,6 +1,6 @@
 // transpile:mocha
 
-import {sample} from '../..';
+import {listDevices} from '../..';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mochawait';
@@ -10,8 +10,10 @@ chai.use(chaiAsPromised);
 
 describe('sample', () => {
   it('should-work',async () => {
-    let res = await sample.func();
-    res.should.equal('123');
+    let res = await listDevices();
+    console.log('res ->', res);
+    //res.should.have.length(1);
+    //res[0].should.include('emulator');
   });
 });
 

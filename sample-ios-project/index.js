@@ -1,6 +1,6 @@
 // transpile:main
 
-import {default as sample} from './lib/sample';
+import {default as listDevices} from './lib/list-devices';
 
-export {sample};
+export {listDevices};
 
