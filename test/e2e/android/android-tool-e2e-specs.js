@@ -1,6 +1,6 @@
 // transpile:mocha
 
-import { AndroidEmulator } from '../../..';
+import { AndroidEmulator, androidTools } from '../../..';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mochawait';
@@ -22,6 +22,12 @@ describe('e2e android tools', function () {
     } finally {
       if (emu) emu.stop();
     }
+  });
+
+  it('killAll',async () => {
+    await androidTools.killAll();
+    await androidTools.killAll('ls');
+    await androidTools.killAll(['ls', 'echo']);
   });
 
   after(async () => {
