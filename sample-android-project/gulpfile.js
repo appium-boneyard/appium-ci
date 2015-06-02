@@ -11,7 +11,7 @@ boilerplate({
   build: 'sample-android-project',
   jscs: false,
   e2eTest: _.defaults({
-    'android-emu': argv.emu,
-    'android-avd': argv.avd
+    androidEmu: argv.emu,
+    androidAvd: argv.avd
   }, DEFAULTS.e2eTest)
 });
