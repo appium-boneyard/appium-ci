@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 var argv = require('yargs').argv;
 
 boilerplate({
-  build: 'sample-android-project',
+  build: 'sample-ios-project',
   jscs: false,
   e2eTest: _.defaults({
     ios: true,

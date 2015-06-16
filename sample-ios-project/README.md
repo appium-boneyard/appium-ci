@@ -15,7 +15,7 @@ to use the yargs package to configure the ios emulator using command line parame
 - Create a new job, copying the [sample-ios-project](https://team-appium.ci.cloudbees.com/view/Appium%20Libs/job/sample-ios-project/)
 - Modify the git section to point to your package.
 - Make sure th test is running on the `yosemite` label.
-- Modify the `Execute shell` as needed, the `setup` line configure the testrunner. The `e2e-test` launch the e2e tests using the avd as parameter.
+- Modify the `Execute shell` as needed, the `setup` line configure the testrunner. The `e2e-test` launch the e2e tests.
 
 ```
 #!/bin/bash -le
