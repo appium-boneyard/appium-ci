@@ -7,13 +7,16 @@ then
   curl -sS  https://raw.githubusercontent.com/creationix/nvm/v0.23.3/install.sh | ( bash || true )
   source ~/.nvm/nvm.sh
   nvm install stable &> nvm-install.log
+  echo "configuring node"
+  nvm use stable
+elif [[ $NODE_LABELS =~ .*windows.* ]]
+then
+  echo "windows machine: not using nvm."
 else
   source ~/.nvm/nvm.sh
+  echo "configuring node"
+  nvm use stable
 fi
-
-# print node and npm versions
-echo "configuring node"
-nvm use stable
 
 { set -x; } 2>/dev/null
 
