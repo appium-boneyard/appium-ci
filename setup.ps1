@@ -1,4 +1,5 @@
 echo "Node.js Version: $(node -v)"
 echo "NPM Version: $(npm -v)"
 
-echo "PATH: $($Env:Path)"
+$Env:Path=$Env:Path;C:\Users\appium\AppData\Roaming\npm
+echo "PATH: $(Env:Path)"
