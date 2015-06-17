@@ -1,4 +1,5 @@
 $Env:Path=$Env:Path + ";C:\Users\appium\AppData\Roaming\npm"
+npm config set color false
 
 echo "Node.js Version: $(node -v)"
 echo "NPM Version: $(npm -v)"
