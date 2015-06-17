@@ -15,3 +15,6 @@ boilerplate({
     avd: argv.avd
   }, DEFAULTS.e2eTest)
 });
+gulp.task('fail', function(done) {
+  done(new Error('failed'));
+})
