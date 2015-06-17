@@ -1,0 +1,2 @@
+echo "AKAK"
+node -v
