@@ -1,6 +1,5 @@
 "use strict";
 
-console.log(process.env);
 var gulp = require('gulp'),
     _ = require('lodash'),
     boilerplate = require('appium-gulp-plugins').boilerplate.use(gulp),
