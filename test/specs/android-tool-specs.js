@@ -27,7 +27,7 @@ describe('android tools', () => {
     let emu;
     try {
       emu = new AndroidEmulator('myavd', {initWait: 500});
-      emu.start();
+      await emu.start();
       await emu.waitTillReady();
     } finally {
       if (emu) emu.stop();

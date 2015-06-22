@@ -17,7 +17,7 @@ describe('e2e android tools', function () {
     let emu;
     try {
       emu = new AndroidEmulator('NEXUS_S_18_X86');
-      emu.start();
+      await Promise.resolve(emu.start());
       await emu.waitTillReady();
     } finally {
       if (emu) emu.stop();
