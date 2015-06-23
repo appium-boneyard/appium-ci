@@ -22,7 +22,7 @@ gulp.task('run-ios-build',
   }).then(function () {
     return utils.smartSpawn(
       path.resolve(global.appiumRoot, 'reset.sh'),
-      ['--ios', '--dev', '--hardcore', '--verbose', '--no-npmlink'],
+      ['--ios', '--dev', '--hardcore', '--verbose', '--no-npmlink', '--no-shrinkwrap'],
       {
         print: 'Running reset.sh',
         cwd: global.appiumRoot,

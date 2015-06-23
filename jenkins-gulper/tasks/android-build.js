@@ -7,14 +7,19 @@ var gulp = require('gulp'),
 gulp.task('run-android-build',
     ['prepare-dirs'],function () {
 
-  return utils.smartSpawn(
-    path.resolve(global.appiumRoot, 'reset.sh'),
-    ['--android', '--dev', '--hardcore', '--verbose', '--no-npmlink'],
-    {
-      print: 'Running reset.sh',
-      cwd: global.appiumRoot,
-    }
-  ).promise.then(function () {
+  return utils.executeShellCommands([
+    'rm -rf node_modules',
+    'npm cache clean'])
+  .then(function () {
+    return utils.smartSpawn(
+      path.resolve(global.appiumRoot, 'reset.sh'),
+      ['--android', '--dev', '--hardcore', '--verbose', '--no-npmlink', '--no-shrinkwrap'],
+      {
+        print: 'Running reset.sh',
+        cwd: global.appiumRoot,
+      }
+    ).promise;
+  }).then(function () {
     // Dirty workaround
     console.log('Replacing ApiDemo symlink by real directory');
     return utils.executeShellCommands([
