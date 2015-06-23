@@ -11,7 +11,6 @@ boilerplate({
   build: 'sample-android-windows-project',
   jscs: false,
   e2eTest: _.defaults({
-    android: argv.emu,
-    avd: argv.avd
+    android: true
   }, DEFAULTS.e2eTest)
 });
