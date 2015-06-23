@@ -2,8 +2,7 @@
 
 var gulp = require('gulp'),
     _ = require('lodash'),
-    boilerplate = require('appium-gulp-plugins').boilerplate.use(gulp),
-    DEFAULTS = require('appium-gulp-plugins').boilerplate.DEFAULTS || {};
+    boilerplate = require('appium-gulp-plugins').boilerplate.use(gulp);
 
 var argv = require('yargs').argv;
 
@@ -14,7 +13,7 @@ var e2eFiles = _(argv).pick('android', 'ios').map(function (v, k) {
 boilerplate({
   build: 'appium-ci',
   jscs: false,
-  e2eTest: _.defaults({
+  e2eTest: {
     files: e2eFiles
-  }, DEFAULTS.e2eTest)
+  }
 });
