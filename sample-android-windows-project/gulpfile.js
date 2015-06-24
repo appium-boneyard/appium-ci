@@ -6,5 +6,8 @@ var gulp = require('gulp'),
 boilerplate({
   build: 'sample-android-windows-project',
   jscs: false,
-  e2eTest: { android: true }
+  e2eTest: {
+    android: true,
+    'android-emu': 'NEXUS_S_18_ARM'
+  }
 });
