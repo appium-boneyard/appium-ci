@@ -8,6 +8,6 @@ boilerplate({
   jscs: false,
   e2eTest: {
     android: true,
-    'android-emu': 'NEXUS_S_18_ARM'
+    'android-avd': 'NEXUS_S_18_ARM'
   }
 });
