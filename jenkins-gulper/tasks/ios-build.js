@@ -10,9 +10,9 @@ gulp.task('run-ios-build',
     ['prepare-dirs'],function () {
   return utils.smartSpawn(
     path.resolve(global.sideSims, 'configure.sh'),
-    ['6.1.1'],
+    [GLOBAL.xCodeVersion],
     {
-      print: 'Configuring xCode 6.1.1',
+      print: 'Configuring xCode ' + GLOBAL.xCodeVersion,
       cwd: global.sideSims,
     }
   ).promise.then(function () {

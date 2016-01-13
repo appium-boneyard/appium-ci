@@ -8,6 +8,8 @@ boilerplate({
   test: false,
   transpile: false});
 
+GLOBAL.xCodeVersion = "7.2";
+
 require('./tasks/commons');
 require('./tasks/build');
 require('./tasks/unit-tests');

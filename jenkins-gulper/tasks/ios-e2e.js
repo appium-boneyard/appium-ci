@@ -20,7 +20,7 @@ gulp.task('run-ios-e2e-worker',
         cwd: global.appiumRoot
       }).promise;
     }).then(function () {
-      return utils.configureXcode('6.1.1');
+      return utils.configureXcode(GLOBAL.xCodeVersion);
     }).then(function () {
        return utils.resetSims();
     }).then(function () {
