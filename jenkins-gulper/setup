@@ -13,7 +13,9 @@ fi
 
 # print node and npm versions
 echo "configuring node"
-nvm use stable
+nvm install v4 && true
+nvm use v4
+npm cache clean
 
 # install deps
 { set -x; } 2>/dev/null
