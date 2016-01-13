@@ -28,7 +28,8 @@ gulp.task('prepare-dirs', ['global'], function () {
     'rm -rf ' + utils.escapePath(global.outputDir),
     'mkdir -p ' + utils.escapePath(global.outputDir),
     'rm -rf ' + utils.escapePath(global.inputDir),
-    'mkdir -p '  + utils.escapePath(global.inputDir)
+    'mkdir -p '  + utils.escapePath(global.inputDir),
+    'rm -rf ' + utils.escapePath(global.appiumRoot + '/node_modules')
    ]);
 });
 
