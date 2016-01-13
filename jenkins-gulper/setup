@@ -15,17 +15,19 @@ fi
 echo "configuring node"
 nvm install v5 && true
 nvm use v5
+
+# cleanup
+npm cache clean -g
 npm cache clean
-echo "current path -> $(pwd)"
 rm -rf node_modules
+
+# installing global gulp
+npm install -g gulp
 
 # install deps
 { set -x; } 2>/dev/null
 npm install >> npm-install.log 2>&1
 { set +x; } 2>/dev/null
-
-# installing global gulp
-npm install -g gulp
 
 # display setting
 export DISPLAY=:1
