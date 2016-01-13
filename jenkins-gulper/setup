@@ -13,8 +13,8 @@ fi
 
 # print node and npm versions
 echo "configuring node"
-nvm install v4 && true
-nvm use v4
+nvm install v0.12 && true
+nvm use v0.12
 npm upgrade npm -g
 npm cache clean
 
