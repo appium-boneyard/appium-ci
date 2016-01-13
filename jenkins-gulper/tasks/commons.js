@@ -28,17 +28,22 @@ gulp.task('prepare-dirs', ['global'], function () {
     'rm -rf ' + utils.escapePath(global.outputDir),
     'mkdir -p ' + utils.escapePath(global.outputDir),
     'rm -rf ' + utils.escapePath(global.inputDir),
-    'mkdir -p '  + utils.escapePath(global.inputDir),
-    'rm -rf ' + utils.escapePath(global.appiumRoot + '/node_modules')
+    'mkdir -p '  + utils.escapePath(global.inputDir)
    ]);
 });
 
 gulp.task('appium-npm-install', ['global'],function () {
- return utils.smartSpawn(
-    'npm',
-    ['install'],
-    {
-      cwd: global.appiumRoot,
-    }
-  ).promise;
+    'rm -rf ' + utils.escapePath(global.appiumRoot + '/node_modules')
+  return utils.smartSpawn(
+    'rm',
+    ['-rf', utils.escapePath(global.appiumRoot + '/node_modules')]
+  ).promise.catch(function() {}).then(function() {
+    return utils.smartSpawn(
+      'npm',
+      ['install'],
+      {
+        cwd: global.appiumRoot,
+      }
+    ).promise;
+  });
 });
