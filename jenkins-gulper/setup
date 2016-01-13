@@ -15,10 +15,9 @@ fi
 echo "configuring node"
 nvm install v5 && true
 nvm use v5
-#npm cache clean -g
-#npm upgrade npm -g
-#npm cache clean -g
 npm cache clean
+echo "current path -> $(pwd)"
+rm -rf node_modules
 
 # install deps
 { set -x; } 2>/dev/null
