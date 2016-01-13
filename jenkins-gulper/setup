@@ -27,6 +27,7 @@ npm install -g gulp
 # install deps
 { set -x; } 2>/dev/null
 npm install >> npm-install.log 2>&1
+npm install >> npm-install.log 2>&1
 { set +x; } 2>/dev/null
 
 # display setting
