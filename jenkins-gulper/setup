@@ -15,6 +15,7 @@ fi
 echo "configuring node"
 nvm install v4 && true
 nvm use v4
+npm upgrade npm -g
 npm cache clean
 
 # install deps
