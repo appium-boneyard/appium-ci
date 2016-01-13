@@ -15,7 +15,8 @@ fi
 echo "configuring node"
 nvm install v5 && true
 nvm use v5
-npm upgrade npm -g
+npm cache clean -g
+nnpm upgrade npm -g
 npm cache clean -g
 npm cache clean
 
