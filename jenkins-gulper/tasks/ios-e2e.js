@@ -28,7 +28,7 @@ gulp.task('run-ios-e2e-worker',
       ], {
         print: 'Killing Instruments + Simulator',
         cwd: global.appiumRoot
-      }).promise;
+      }).promise.catch(function() {});
     }).then(function () {
       return utils.configureXcode(GLOBAL.xCodeVersion);
     }).then(function () {
