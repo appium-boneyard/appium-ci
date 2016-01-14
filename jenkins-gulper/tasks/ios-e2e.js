@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     Q = require('q'),
     runSequence = Q.denodeify(require('run-sequence')),
     utils = require('../lib/utils'),
-    path = require('path'),
+    iosUtils = require('../lib/ios-utils'),
+     path = require('path'),
     _ = require('underscore');
 
 gulp.task('run-ios-e2e-worker',
@@ -17,6 +18,15 @@ gulp.task('run-ios-e2e-worker',
         '--testSplit=' + global.argv.numOfSplits
       ], {
         print: 'Showing test split',
+        cwd: global.appiumRoot
+      }).promise;
+    }).then(function () {
+      return utils.smartSpawn('pkill', [
+        '-fi',
+        'instruments',
+        'simulator'
+      ], {
+        print: 'Killing Instruments + Simulator',
         cwd: global.appiumRoot
       }).promise;
     }).then(function () {
