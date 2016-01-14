@@ -4,7 +4,6 @@ var gulp = require('gulp'),
     Q = require('q'),
     runSequence = Q.denodeify(require('run-sequence')),
     utils = require('../lib/utils'),
-    iosUtils = require('../lib/ios-utils'),
      path = require('path'),
     _ = require('underscore');
 
