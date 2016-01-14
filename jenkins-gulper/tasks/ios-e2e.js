@@ -36,6 +36,13 @@ gulp.task('run-ios-e2e-worker',
     }).then(function () {
        return utils.setIosSimulatorScale();
     }).then(function () {
+      return utils.smartSpawn('sudo', [
+        './bin/authorize-ios.js',
+      ], {
+        print: 'Running authorize script',
+        cwd: global.appiumRoot
+      }).promise;
+    }).then(function () {
       var env = _.clone(process.env);
       env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
       env.JUNIT_REPORT_PATH = path.resolve(
