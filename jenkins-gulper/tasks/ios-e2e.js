@@ -20,7 +20,8 @@ gulp.task('run-ios-e2e-worker',
         cwd: global.appiumRoot
       }).promise;
     }).then(function () {
-      return utils.smartSpawn('pkill', [
+      return utils.smartSpawn('sudo', [
+        'pkill',
         '-fi',
         'instruments',
         'simulator'
