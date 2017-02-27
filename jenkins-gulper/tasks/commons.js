@@ -32,8 +32,7 @@ gulp.task('prepare-dirs', ['global'], function () {
    ]);
 });
 
-gulp.task('appium-npm-install', ['global'],function () {
-    'rm -rf ' + utils.escapePath(global.appiumRoot + '/node_modules')
+gulp.task('appium-npm-install', ['global'], function () {
   return utils.smartSpawn(
     'rm',
     ['-rf', utils.escapePath(global.appiumRoot + '/node_modules')]
