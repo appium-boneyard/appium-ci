@@ -10,8 +10,8 @@ import sinon from 'sinon';
 chai.should();
 chai.use(chaiAsPromised);
 
-describe('android tools', () => {
-  before(async () => {
+describe('android tools', function () {
+  before(async function () {
     let _spawn = utils.spawn;
     let _exec = utils.exec;
 
@@ -23,7 +23,7 @@ describe('android tools', () => {
     });
   });
 
-  it('launch emu',async () => {
+  it('launch emu',async function () {
     let emu;
     try {
       emu = new AndroidEmulator('myavd', {initWait: 500});
@@ -34,13 +34,13 @@ describe('android tools', () => {
     }
   });
 
-  it('killAll',async () => {
+  it('killAll',async function () {
     await androidTools.killAll();
     await androidTools.killAll('ls');
     await androidTools.killAll(['ls', 'echo']);
   });
 
-  after(async () => {
+  after(async function () {
     utils.spawn.restore();
     utils.exec.restore();
   });

@@ -10,10 +10,10 @@ chai.use(chaiAsPromised);
 
 describe('e2e android tools', function () {
   this.timeout(300000);
-  before(async () => {
+  before(async function () {
   });
 
-  it('launch emu',async () => {
+  it('launch emu',async function () {
     let emu;
     try {
       emu = new AndroidEmulator('NEXUS_S_18_X86');
@@ -24,13 +24,13 @@ describe('e2e android tools', function () {
     }
   });
 
-  it('killAll',async () => {
+  it('killAll',async function () {
     await androidTools.killAll();
     await androidTools.killAll('ls');
     await androidTools.killAll(['ls', 'echo']);
   });
 
-  after(async () => {
+  after(async function () {
   });
 
 });
