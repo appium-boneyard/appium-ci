@@ -40,11 +40,10 @@
   },
   "devDependencies": {
     "appium-gulp-plugins": "^1.2.1",
-    "chai": "^2.3.0",
-    "chai-as-promised": "^5.0.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
     "gulp": "^3.8.11",
-    "mochawait": "^2.0.0",
     "sinon": "^1.14.1",
-    "yargs": "^3.9.0"
+    "yargs": "^7.0.0"
   }
 }
