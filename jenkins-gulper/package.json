@@ -4,12 +4,13 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
+    "lint": "gulp eslint",
     "test": "gulp once"
   },
   "author": "Appium Commiters",
   "license": "Apache-2.0",
   "dependencies": {
-    "appium-gulp-plugins": "^1.1.8",
+    "appium-gulp-plugins": "^2.2.0",
     "gulp": "^3.8.11",
     "q": "^1.1.2",
     "request": "^2.53.0",
@@ -18,9 +19,15 @@
     "split": "^1.0.0",
     "uncolor": "^0.4.0",
     "underscore": "^1.8.1",
-    "yargs": "^3.1.0"
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "gulp-jshint": "^2.0.0"
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.18.0",
+    "eslint-config-appium": "^2.0.1",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-mocha": "^4.7.0",
+    "eslint-plugin-promise": "^3.3.1"
   }
 }

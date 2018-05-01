@@ -1,18 +1,16 @@
 "use strict";
 
-var gulp = require('gulp'),
-    utils = require('../lib/utils'),
-    path = require('path'),
-    _ = require('underscore');
+const gulp = require('gulp');
+const utils = require('../lib/utils');
+const path = require('path');
+const _ = require('underscore');
 
-gulp.task('run-unit-tests',
-    ['prepare-dirs', 'appium-npm-install'],function () {
-
-  var env = _.clone(process.env);
+gulp.task('run-unit-tests', ['prepare-dirs', 'appium-npm-install'], function () {
+  let env = _.clone(process.env);
   env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
   env.JUNIT_REPORT_PATH = path.resolve(
     global.outputDir,
-    'report' + ((env.BUILD_NUMBER) ? '-' + env.BUILD_NUMBER : '') +'.xml');
+    `report${env.BUILD_NUMBER ? `-${env.BUILD_NUMBER}` : ''}.xml`);
   env.JUNIT_REPORT_STACK = 1;
 
   return utils.smartSpawn(
@@ -21,8 +19,7 @@ gulp.task('run-unit-tests',
     {
       print: 'Running Appium unit tests',
       cwd: global.appiumRoot,
-      env: env,
-   }
+      env,
+    }
   ).promise;
 });
-

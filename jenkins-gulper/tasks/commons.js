@@ -1,8 +1,8 @@
 "use strict";
 
-var gulp = require('gulp'),
-    utils = require('../lib/utils'),
-    path = require('path');
+const gulp = require('gulp');
+const utils = require('../lib/utils');
+const path = require('path');
 
 gulp.task('global', function () {
   global.argv = require('yargs').argv;
@@ -15,8 +15,8 @@ gulp.task('global', function () {
   global.sideSims = path.resolve(global.sideDisk, 'sims');
   global.ciRootUrl = process.env.HUDSON_URL;
 
-  console.log('global.appiumRoot -->', global.appiumRoot);
-  console.log('global.ciRootUrl -->', global.ciRootUrl);
+  console.log('global.appiumRoot -->', global.appiumRoot); // eslint-disable-line no-console
+  console.log('global.ciRootUrl -->', global.ciRootUrl); // eslint-disable-line no-console
 });
 
 gulp.task('prepare-dirs', ['global'], function () {
@@ -29,14 +29,14 @@ gulp.task('prepare-dirs', ['global'], function () {
     'mkdir -p ' + utils.escapePath(global.outputDir),
     'rm -rf ' + utils.escapePath(global.inputDir),
     'mkdir -p '  + utils.escapePath(global.inputDir)
-   ]);
+  ]);
 });
 
 gulp.task('appium-npm-install', ['global'], function () {
   return utils.smartSpawn(
     'rm',
     ['-rf', utils.escapePath(global.appiumRoot + '/node_modules')]
-  ).promise.catch(function() {}).then(function() {
+  ).promise.catch(function () {}).then(function () { // eslint-disable-line promise/prefer-await-to-then
     return utils.smartSpawn(
       'npm',
       ['install'],
