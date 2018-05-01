@@ -3,16 +3,15 @@
 import {listDevices} from '../..';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import 'mochawait';
+
 
 chai.should();
 chai.use(chaiAsPromised);
 
-describe('sample', () => {
-  it('should-work',async () => {
+describe('sample', function () {
+  it('should-work', async function () {
     let res = await listDevices();
-    console.log('res ->', res);
+    console.log('res ->', res); // eslint-disable-line no-console
     res.should.have.length.above(5);
   });
 });
-

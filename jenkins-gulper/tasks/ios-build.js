@@ -1,13 +1,11 @@
+/* eslint-disable promise/prefer-await-to-then */
 "use strict";
 
-var gulp = require('gulp'),
-    utils = require('../lib/utils'),
-    path = require('path');
-    // uploadToS3 = require("../lib/s3-fast-upload");
-    // _ = require('underscore');
+const gulp = require('gulp');
+const utils = require('../lib/utils');
+const path = require('path');
 
-gulp.task('run-ios-build',
-    ['prepare-dirs'],function () {
+gulp.task('run-ios-build', ['prepare-dirs'], function () {
   return utils.smartSpawn(
     path.resolve(global.sideSims, 'configure.sh'),
     [GLOBAL.xCodeVersion],

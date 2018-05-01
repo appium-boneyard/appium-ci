@@ -1,15 +1,15 @@
+/* eslint-disable promise/prefer-await-to-then */
 "use strict";
 
-var gulp = require('gulp'),
-    Q = require('q'),
-    runSequence = Q.denodeify(require('run-sequence')),
-    utils = require('../lib/utils'),
-    path = require('path'),
-    _ = require('underscore');
+const gulp = require('gulp');
+const Q = require('q');
+const runSequence = Q.denodeify(require('run-sequence'));
+const utils = require('../lib/utils');
+const path = require('path');
+const _ = require('underscore');
 
-gulp.task('run-android-e2e-worker',
-    ['prepare-dirs'],function () {
-  return runSequence('download-scp-build','expand-build')
+gulp.task('run-android-e2e-worker', ['prepare-dirs'], function () {
+  return runSequence('download-scp-build', 'expand-build')
     .then(function () {
       return utils.smartSpawn('gulp', [
         'show-android-e2e-tests-split',
@@ -20,8 +20,8 @@ gulp.task('run-android-e2e-worker',
         cwd: global.appiumRoot
       }).promise;
     }).then(function () {
-      var env = _.clone(process.env);
-      var reportBase = 'report' + ((process.env.BUILD_NUMBER) ? '-' + process.env.BUILD_NUMBER : '');
+      const env = _.clone(process.env);
+      const reportBase = 'report' + ((process.env.BUILD_NUMBER) ? '-' + process.env.BUILD_NUMBER : '');
       env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
       env.JUNIT_REPORT_PATH = path.resolve(
           global.reportsDir,
@@ -37,10 +37,9 @@ gulp.task('run-android-e2e-worker',
       ], {
         print: 'Showing test split',
         cwd: global.appiumRoot,
-        env: env
+        env,
       }).promise;
     }).fin(function () {
       return utils.uploadReports();
     });
 });
-

@@ -4,7 +4,6 @@ import { AndroidEmulator, androidTools } from '../..';
 import utils from '../../lib/utils';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import 'mochawait';
 import sinon from 'sinon';
 
 chai.should();
@@ -15,26 +14,28 @@ describe('android tools', function () {
     let _spawn = utils.spawn;
     let _exec = utils.exec;
 
-    sinon.stub(utils, "spawn", function () {
+    sinon.stub(utils, "spawn").callsFake(function () {
       return _spawn('sleep', ['300']);
     });
-    sinon.stub(utils, "exec", function () {
+    sinon.stub(utils, "exec").callsFake(function () {
       return _exec('echo 1');
     });
   });
 
-  it('launch emu',async function () {
+  it('launch emu', async function () {
     let emu;
     try {
       emu = new AndroidEmulator('myavd', {initWait: 500});
       await emu.start();
       await emu.waitTillReady();
     } finally {
-      if (emu) emu.stop();
+      if (emu) {
+        emu.stop();
+      }
     }
   });
 
-  it('killAll',async function () {
+  it('killAll', async function () {
     await androidTools.killAll();
     await androidTools.killAll('ls');
     await androidTools.killAll(['ls', 'echo']);
@@ -44,6 +45,4 @@ describe('android tools', function () {
     utils.spawn.restore();
     utils.exec.restore();
   });
-
 });
-

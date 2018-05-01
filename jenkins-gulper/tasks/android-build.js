@@ -1,12 +1,11 @@
+/* eslint-disable promise/prefer-await-to-then */
 "use strict";
 
-var gulp = require('gulp'),
-    utils = require('../lib/utils'),
-    path = require('path');
+const gulp = require('gulp');
+const utils = require('../lib/utils');
+const path = require('path');
 
-gulp.task('run-android-build',
-    ['prepare-dirs'],function () {
-
+gulp.task('run-android-build', ['prepare-dirs'], function () {
   return utils.executeShellCommands([
     'rm -rf node_modules',
     'npm cache clean'])
@@ -21,7 +20,7 @@ gulp.task('run-android-build',
     ).promise;
   }).then(function () {
     // Dirty workaround
-    console.log('Replacing ApiDemo symlink by real directory');
+    console.log('Replacing ApiDemo symlink by real directory'); // eslint-disable-line no-console
     return utils.executeShellCommands([
       'rm -rf ' + utils.escapePath(path.resolve(global.appiumRoot, 'sample-code/apps/ApiDemos')),
       'mv ' + utils.escapePath(path.resolve(global.appiumRoot, 'submodules/ApiDemos')) +
@@ -45,5 +44,5 @@ gulp.task('run-android-build',
     ).promise;
   }).then(function () {
     return utils.uploadBuild();
-   });
+  });
 });

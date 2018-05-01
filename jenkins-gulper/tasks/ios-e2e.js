@@ -1,20 +1,20 @@
+/* eslint-disable promise/prefer-await-to-then */
 "use strict";
 
-var gulp = require('gulp'),
-    Q = require('q'),
-    runSequence = Q.denodeify(require('run-sequence')),
-    utils = require('../lib/utils'),
-     path = require('path'),
-    _ = require('underscore');
+const gulp = require('gulp');
+const Q = require('q');
+const runSequence = Q.denodeify(require('run-sequence'));
+const utils = require('../lib/utils');
+const path = require('path');
+const _ = require('underscore');
 
-gulp.task('run-ios-e2e-worker',
-    ['prepare-dirs'],function () {
-  return runSequence('download-scp-build','expand-build')
+gulp.task('run-ios-e2e-worker', ['prepare-dirs'], function () {
+  return runSequence('download-scp-build', 'expand-build')
     .then(function () {
       return utils.smartSpawn('gulp', [
         'show-ios-e2e-tests-split',
         '--color',
-        '--testSplit=' + global.argv.numOfSplits
+        `--testSplit=${global.argv.numOfSplits}`,
       ], {
         print: 'Showing test split',
         cwd: global.appiumRoot
@@ -28,13 +28,13 @@ gulp.task('run-ios-e2e-worker',
       ], {
         print: 'Killing Instruments + Simulator',
         cwd: global.appiumRoot
-      }).promise.catch(function() {});
+      }).promise.catch(function () {});
     }).then(function () {
       return utils.configureXcode(GLOBAL.xCodeVersion);
     }).then(function () {
-       return utils.resetSims();
+      return utils.resetSims();
     }).then(function () {
-       return utils.setIosSimulatorScale();
+      return utils.setIosSimulatorScale();
     }).then(function () {
       return utils.smartSpawn('sudo', [
         './bin/authorize-ios.js',
@@ -43,7 +43,7 @@ gulp.task('run-ios-e2e-worker',
         cwd: global.appiumRoot
       }).promise;
     }).then(function () {
-      var env = _.clone(process.env);
+      const env = _.clone(process.env);
       env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
       env.JUNIT_REPORT_PATH = path.resolve(
           global.reportsDir,
@@ -58,10 +58,9 @@ gulp.task('run-ios-e2e-worker',
       ], {
         print: 'Showing test split',
         cwd: global.appiumRoot,
-        env: env
+        env,
       }).promise;
     }).fin(function () {
       return utils.uploadReports();
     });
 });
-

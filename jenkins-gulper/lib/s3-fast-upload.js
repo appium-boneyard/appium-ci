@@ -1,15 +1,15 @@
 #!/usr/bin/env node
-
+/* eslint-disable promise/prefer-await-to-callbacks */
 "use strict";
 
-var s3 = require('s3'),
-  _ = require('underscore'),
-  Q = require('q');
+const s3 = require('s3');
+const _ = require('underscore');
+const Q = require('q');
 
 module.exports = function (bucket, localFile, key) {
-  var deferred = Q.defer();
+  const deferred = Q.defer();
 
-  var client = s3.createClient({
+  const client = s3.createClient({
     maxAsyncS3: 20,
     s3RetryCount: 3,
     s3RetryDelay: 1000,
@@ -21,8 +21,8 @@ module.exports = function (bucket, localFile, key) {
     },
   });
 
-  var params = {
-    localFile: localFile,
+  const params = {
+    localFile,
 
     s3Params: {
       Bucket: bucket,
@@ -32,14 +32,14 @@ module.exports = function (bucket, localFile, key) {
     },
   };
 
-  var uploader = client.uploadFile(params);
+  const uploader = client.uploadFile(params);
   uploader.on('error', function (err) {
-    console.error("unable to upload:", err.stack);
+    console.error("unable to upload:", err.stack); // eslint-disable-line no-console
     deferred.reject("S3 upload failed.");
   });
 
-  function printProgress() {
-    console.log("progress", uploader.progressMd5Amount,
+  function printProgress () {
+    console.log("progress", uploader.progressMd5Amount, // eslint-disable-line no-console
               uploader.progressAmount, uploader.progressTotal);
   }
 
@@ -47,7 +47,7 @@ module.exports = function (bucket, localFile, key) {
 
   uploader.on('end', function () {
     printProgress();
-    console.log("done uploading");
+    console.log("done uploading"); // eslint-disable-line no-console
     deferred.resolve();
   });
 
