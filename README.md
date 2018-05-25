@@ -5,7 +5,7 @@ Some libraries used to deploy CI for the various appium packages.
 
 ## Status
 
-[![Build Status](https://travis-ci.org/appium/appium-ci.svg)](https://travis-ci.org/appium/appium-ci)
+[![Build Status](https://travis-ci.org/appium/appium-ci.svg)](https://travis-ci.org/appium/appium-ci) [![Greenkeeper badge](https://badges.greenkeeper.io/appium/appium-ci.svg)](https://greenkeeper.io/)
 
 ## Watch
 
