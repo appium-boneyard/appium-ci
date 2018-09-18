@@ -24,16 +24,24 @@
   "directories": {
     "lib": "lib"
   },
+  "files": [
+    "build/index.js",
+    "build/lib",
+    "index.js",
+    "lib",
+    "setup",
+    "setup.ps1"
+  ],
   "dependencies": {
     "appium-support": "^2.5.0",
-    "babel-core": "^5.4.3",
-    "babel-runtime": "^5.3.3",
+    "babel-runtime": "=5.8.24",
     "bluebird": "^2.9.30",
     "lodash": "^4.17.10",
     "source-map-support": "^0.5.5",
     "split": "^1.0.0"
   },
   "scripts": {
+    "clean": "rm -rf node_modules && rm -f package-lock.json && npm install",
     "build": "gulp transpile",
     "mocha": "mocha",
     "prepublish": "gulp prepublish",
@@ -62,7 +70,19 @@
     "eslint-plugin-mocha": "^4.7.0",
     "eslint-plugin-promise": "^3.3.1",
     "gulp": "^3.8.11",
-    "sinon": "^5.0.2",
-    "yargs": "^11.0.0"
+    "sinon": "^6.3.4",
+    "yargs": "^12.0.2"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "babel-eslint",
+      "eslint",
+      "eslint-plugin-babel",
+      "eslint-plugin-import",
+      "eslint-plugin-mocha",
+      "eslint-plugin-promise",
+      "gulp",
+      "babel-runtime"
+    ]
   }
 }
