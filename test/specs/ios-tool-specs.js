@@ -28,7 +28,7 @@ describe('ios tools', function () {
   });
 
   it('spawn as current user', async function () {
-    let proc = await iosTools.spawnAsUser('ls', ['-l']);
+    let proc = await iosTools.spawnAsCurrentUser('ls', ['-l']);
     proc.kill();
   });
 
