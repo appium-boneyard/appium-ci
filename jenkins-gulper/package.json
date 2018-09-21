@@ -10,7 +10,7 @@
   "author": "Appium Commiters",
   "license": "Apache-2.0",
   "dependencies": {
-    "appium-gulp-plugins": "^2.2.0",
+    "appium-gulp-plugins": "^3.0.0",
     "gulp": "^3.8.11",
     "q": "^1.1.2",
     "request": "^2.53.0",
