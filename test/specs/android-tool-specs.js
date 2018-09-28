@@ -10,7 +10,7 @@ chai.should();
 chai.use(chaiAsPromised);
 
 describe('android tools', function () {
-  before(async function () {
+  before(function () {
     let _spawn = utils.spawn;
     let _exec = utils.exec;
 
@@ -41,7 +41,7 @@ describe('android tools', function () {
     await androidTools.killAll(['ls', 'echo']);
   });
 
-  after(async function () {
+  after(function () {
     utils.spawn.restore();
     utils.exec.restore();
   });
