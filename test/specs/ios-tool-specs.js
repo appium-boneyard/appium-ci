@@ -6,6 +6,7 @@ import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import sinon from 'sinon';
 
+
 chai.should();
 chai.use(chaiAsPromised);
 

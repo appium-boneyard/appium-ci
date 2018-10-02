@@ -1,6 +1,9 @@
 // transpile:main
 
-import {Emulator as AndroidEmulator, androidTools} from './lib/android-tools';
-import iosTools from './lib/ios-tools';
+import * as android from './lib/android-tools';
+import * as iosTools from './lib/ios-tools';
 
-export {AndroidEmulator, androidTools, iosTools};
+
+const { Emulator: AndroidEmulator, androidTools } = android;
+
+export { AndroidEmulator, androidTools, iosTools };
