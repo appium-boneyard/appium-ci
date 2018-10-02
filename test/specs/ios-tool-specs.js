@@ -10,7 +10,7 @@ chai.should();
 chai.use(chaiAsPromised);
 
 describe('ios tools', function () {
-  before(async function () {
+  before(function () {
     let _exec = utils.exec;
     let _spawn = utils.spawn;
 
@@ -50,7 +50,7 @@ describe('ios tools', function () {
     await iosTools.killAll(['ls', 'echo']);
   });
 
-  after(async function () {
+  after(function () {
     utils.exec.restore();
     utils.spawn.restore();
   });
