@@ -2,11 +2,7 @@
   "groups": {
     "default": {
       "packages": [
-        "jenkins-gulper/package.json",
-        "package.json",
-        "sample-android-project/package.json",
-        "sample-android-windows-project/package.json",
-        "sample-ios-project/package.json"
+        "package.json"
       ]
     }
   }
