@@ -41,7 +41,7 @@
     "watch": "gulp"
   },
   "devDependencies": {
-    "appium-gulp-plugins": "^2.4.1",
+    "appium-gulp-plugins": "^3.1.2",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "gulp": "^3.8.11",
