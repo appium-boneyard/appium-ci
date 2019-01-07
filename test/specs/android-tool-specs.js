@@ -14,10 +14,10 @@ describe('android tools', function () {
     let _spawn = utils.spawn;
     let _exec = utils.exec;
 
-    sinon.stub(utils, "spawn").callsFake(function () {
+    sinon.stub(utils, 'spawn').callsFake(function () {
       return _spawn('sleep', ['300']);
     });
-    sinon.stub(utils, "exec").callsFake(function () {
+    sinon.stub(utils, 'exec').callsFake(function () {
       return _exec('echo 1');
     });
   });
