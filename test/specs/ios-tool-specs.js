@@ -15,10 +15,10 @@ describe('ios tools', function () {
     let _exec = utils.exec;
     let _spawn = utils.spawn;
 
-    sinon.stub(utils, "exec").callsFake(function () {
+    sinon.stub(utils, 'exec').callsFake(function () {
       return _exec('echo bob');
     });
-    sinon.stub(utils, "spawn").callsFake(function () {
+    sinon.stub(utils, 'spawn').callsFake(function () {
       return _spawn('echo', ['1']);
     });
   });
