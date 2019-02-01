@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
 const gulp = require('gulp');
 const utils = require('../lib/utils');
 const path = require('path');
 
-gulp.task('collect-downstream-xunit-results', ['prepare-dirs'], function () {
+gulp.task('collect-downstream-xunit-results', gulp.series('prepare-dirs', function () {
   const uploadServer = process.env.BUILD_UPLOAD_SERVER;
   const dir = path.join('reports', process.env.JOB_NAME, process.env.BUILD_NUMBER);
   const inputDir = global.inputDir;
@@ -18,4 +18,4 @@ gulp.task('collect-downstream-xunit-results', ['prepare-dirs'], function () {
       'for TGZ in ' + utils.escapePath(inputDir) + '/*.tgz; do tar xfz "$TGZ"; done'
     ], {cwd: reportsDir});
   });
-});
+}));

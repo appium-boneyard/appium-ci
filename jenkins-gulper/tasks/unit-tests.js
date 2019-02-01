@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 const gulp = require('gulp');
 const utils = require('../lib/utils');
 const path = require('path');
 const _ = require('underscore');
 
-gulp.task('run-unit-tests', ['prepare-dirs', 'appium-npm-install'], function () {
+gulp.task('run-unit-tests', gulp.series('prepare-dirs', 'appium-npm-install', function () {
   let env = _.clone(process.env);
   env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
   env.JUNIT_REPORT_PATH = path.resolve(
@@ -22,4 +22,4 @@ gulp.task('run-unit-tests', ['prepare-dirs', 'appium-npm-install'], function () 
       env,
     }
   ).promise;
-});
+}));

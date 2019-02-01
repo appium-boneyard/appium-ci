@@ -1,5 +1,5 @@
 /* eslint-disable promise/prefer-await-to-then */
-"use strict";
+'use strict';
 
 const gulp = require('gulp');
 const Q = require('q');
@@ -8,7 +8,7 @@ const utils = require('../lib/utils');
 const path = require('path');
 const _ = require('underscore');
 
-gulp.task('run-ios-e2e-worker', ['prepare-dirs'], function () {
+gulp.task('run-ios-e2e-worker', gulp.series('prepare-dirs', function () {
   return runSequence('download-scp-build', 'expand-build')
     .then(function () {
       return utils.smartSpawn('gulp', [
@@ -30,7 +30,7 @@ gulp.task('run-ios-e2e-worker', ['prepare-dirs'], function () {
         cwd: global.appiumRoot
       }).promise.catch(function () {});
     }).then(function () {
-      return utils.configureXcode(GLOBAL.xCodeVersion);
+      return utils.configureXcode(global.xCodeVersion);
     }).then(function () {
       return utils.resetSims();
     }).then(function () {
@@ -47,7 +47,7 @@ gulp.task('run-ios-e2e-worker', ['prepare-dirs'], function () {
       env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
       env.JUNIT_REPORT_PATH = path.resolve(
           global.reportsDir,
-          'report' + ((env.BUILD_NUMBER) ? '-' + env.BUILD_NUMBER : '') +'.xml');
+          'report' + ((env.BUILD_NUMBER) ? '-' + env.BUILD_NUMBER : '') + '.xml');
       env.JUNIT_REPORT_STACK = 1;
 
       return utils.smartSpawn('gulp', [
@@ -63,4 +63,4 @@ gulp.task('run-ios-e2e-worker', ['prepare-dirs'], function () {
     }).fin(function () {
       return utils.uploadReports();
     });
-});
+}));

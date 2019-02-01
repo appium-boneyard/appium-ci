@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const gulp = require('gulp');
 const utils = require('../lib/utils');
@@ -19,7 +19,7 @@ gulp.task('global', function () {
   console.log('global.ciRootUrl -->', global.ciRootUrl); // eslint-disable-line no-console
 });
 
-gulp.task('prepare-dirs', ['global'], function () {
+gulp.task('prepare-dirs', gulp.series('global', function () {
   return utils.executeShellCommands([
     'rm -rf ' + utils.escapePath(global.artifactsDir),
     'mkdir -p ' + utils.escapePath(global.artifactsDir),
@@ -28,11 +28,11 @@ gulp.task('prepare-dirs', ['global'], function () {
     'rm -rf ' + utils.escapePath(global.outputDir),
     'mkdir -p ' + utils.escapePath(global.outputDir),
     'rm -rf ' + utils.escapePath(global.inputDir),
-    'mkdir -p '  + utils.escapePath(global.inputDir)
+    'mkdir -p ' + utils.escapePath(global.inputDir)
   ]);
-});
+}));
 
-gulp.task('appium-npm-install', ['global'], function () {
+gulp.task('appium-npm-install', gulp.series('global', function () {
   return utils.smartSpawn(
     'rm',
     ['-rf', utils.escapePath(global.appiumRoot + '/node_modules')]
@@ -45,4 +45,4 @@ gulp.task('appium-npm-install', ['global'], function () {
       }
     ).promise;
   });
-});
+}));

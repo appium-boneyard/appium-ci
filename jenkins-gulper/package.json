@@ -4,12 +4,14 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "lint": "gulp eslint",
+    "lint": "gulp lint",
+    "lint:fix": "gulp lint --fix",
     "test": "gulp once"
   },
   "author": "Appium Commiters",
   "license": "Apache-2.0",
   "dependencies": {
+    "@babel/runtime": "^7.0.0",
     "appium-gulp-plugins": "^3.6.1",
     "gulp": "^4.0.0",
     "q": "^1.1.2",
@@ -31,15 +33,6 @@
     "eslint-plugin-promise": "^4.0.1"
   },
   "greenkeeper": {
-    "ignore": [
-      "babel-eslint",
-      "eslint",
-      "eslint-plugin-babel",
-      "eslint-plugin-import",
-      "eslint-plugin-mocha",
-      "eslint-plugin-promise",
-      "gulp",
-      "babel-runtime"
-    ]
+    "ignore": []
   }
 }

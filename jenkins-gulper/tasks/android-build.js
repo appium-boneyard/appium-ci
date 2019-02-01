@@ -1,11 +1,11 @@
 /* eslint-disable promise/prefer-await-to-then */
-"use strict";
+'use strict';
 
 const gulp = require('gulp');
 const utils = require('../lib/utils');
 const path = require('path');
 
-gulp.task('run-android-build', ['prepare-dirs'], function () {
+gulp.task('run-android-build', gulp.series('prepare-dirs', function () {
   return utils.executeShellCommands([
     'rm -rf node_modules',
     'npm cache clean'])
@@ -45,4 +45,4 @@ gulp.task('run-android-build', ['prepare-dirs'], function () {
   }).then(function () {
     return utils.uploadBuild();
   });
-});
+}));
