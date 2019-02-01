@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const gulp = require('gulp');
 const boilerplate = require('appium-gulp-plugins').boilerplate.use(gulp);
@@ -10,7 +10,7 @@ boilerplate({
   transpile: false
 });
 
-global.xCodeVersion = "7.2";
+global.xCodeVersion = '7.2';
 
 require('./tasks/commons');
 require('./tasks/build');

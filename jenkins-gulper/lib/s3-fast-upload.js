@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable promise/prefer-await-to-callbacks */
-"use strict";
+'use strict';
 
 const s3 = require('s3');
 const _ = require('underscore');
@@ -34,12 +34,12 @@ module.exports = function (bucket, localFile, key) {
 
   const uploader = client.uploadFile(params);
   uploader.on('error', function (err) {
-    console.error("unable to upload:", err.stack); // eslint-disable-line no-console
-    deferred.reject("S3 upload failed.");
+    console.error('unable to upload:', err.stack); // eslint-disable-line no-console
+    deferred.reject('S3 upload failed.');
   });
 
   function printProgress () {
-    console.log("progress", uploader.progressMd5Amount, // eslint-disable-line no-console
+    console.log('progress', uploader.progressMd5Amount, // eslint-disable-line no-console
               uploader.progressAmount, uploader.progressTotal);
   }
 
@@ -47,7 +47,7 @@ module.exports = function (bucket, localFile, key) {
 
   uploader.on('end', function () {
     printProgress();
-    console.log("done uploading"); // eslint-disable-line no-console
+    console.log('done uploading'); // eslint-disable-line no-console
     deferred.resolve();
   });
 

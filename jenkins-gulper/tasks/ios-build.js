@@ -1,16 +1,16 @@
 /* eslint-disable promise/prefer-await-to-then */
-"use strict";
+'use strict';
 
 const gulp = require('gulp');
 const utils = require('../lib/utils');
 const path = require('path');
 
-gulp.task('run-ios-build', ['prepare-dirs'], function () {
+gulp.task('run-ios-build', gulp.series('prepare-dirs', function () {
   return utils.smartSpawn(
     path.resolve(global.sideSims, 'configure.sh'),
-    [GLOBAL.xCodeVersion],
+    [global.xCodeVersion],
     {
-      print: 'Configuring xCode ' + GLOBAL.xCodeVersion,
+      print: 'Configuring xCode ' + global.xCodeVersion,
       cwd: global.sideSims,
     }
   ).promise.then(function () {
@@ -45,4 +45,4 @@ gulp.task('run-ios-build', ['prepare-dirs'], function () {
   }).then(function () {
     return utils.uploadBuild();
   });
-});
+}));

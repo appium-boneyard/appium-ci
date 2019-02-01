@@ -1,5 +1,5 @@
 /* eslint-disable promise/prefer-await-to-then */
-"use strict";
+'use strict';
 
 const gulp = require('gulp');
 const Q = require('q');
@@ -8,7 +8,7 @@ const utils = require('../lib/utils');
 const path = require('path');
 const _ = require('underscore');
 
-gulp.task('run-android-e2e-worker', ['prepare-dirs'], function () {
+gulp.task('run-android-e2e-worker', gulp.series('prepare-dirs', function () {
   return runSequence('download-scp-build', 'expand-build')
     .then(function () {
       return utils.smartSpawn('gulp', [
@@ -25,7 +25,7 @@ gulp.task('run-android-e2e-worker', ['prepare-dirs'], function () {
       env.MOCHA_REPORTER = 'mocha-jenkins-reporter';
       env.JUNIT_REPORT_PATH = path.resolve(
           global.reportsDir,
-          reportBase +'.xml');
+          reportBase + '.xml');
       env.JUNIT_REPORT_STACK = 1;
 
       return utils.smartSpawn('gulp', [
@@ -42,4 +42,4 @@ gulp.task('run-android-e2e-worker', ['prepare-dirs'], function () {
     }).fin(function () {
       return utils.uploadReports();
     });
-});
+}));

@@ -1,5 +1,5 @@
 /* eslint-disable promise/prefer-await-to-then */
-"use strict";
+'use strict';
 
 const gulp = require('gulp');
 const utils = require('../lib/utils');
@@ -8,7 +8,7 @@ const request = Q.denodeify(require('request'));
 const _ = require('underscore');
 const path = require('path');
 
-gulp.task('download-build', ['prepare-dirs'], function () {
+gulp.task('download-build', gulp.series('prepare-dirs', function () {
   const m = global.argv.downloadBuild.match(/(.*)\/(.*)/);
   const jobName = m[1];
   const buildNumber = m[2];
@@ -16,7 +16,7 @@ gulp.task('download-build', ['prepare-dirs'], function () {
   console.log('downloading ' + jobName + '/' + buildNumber); // eslint-disable-line no-console
 
   let upStreamJobUrl = global.ciRootUrl + 'job/' + utils.encode(jobName) +
-     '/' + buildNumber  + '/api/json';
+     '/' + buildNumber + '/api/json';
   console.log('upStreamJobUrl ->', upStreamJobUrl); // eslint-disable-line no-console
   return request(upStreamJobUrl)
     .spread(function (res, body) {
@@ -29,9 +29,9 @@ gulp.task('download-build', ['prepare-dirs'], function () {
       return utils.downloadS3Artifact(buildJob.jobName, buildJob.buildNumber,
         'appium-build.tgz', global.inputDir);
     });
-});
+}));
 
-gulp.task('download-scp-build', ['prepare-dirs'], function () {
+gulp.task('download-scp-build', gulp.series('prepare-dirs', function () {
   const m = global.argv.downloadBuild.match(/(.*)\/(.*)/);
   const jobName = m[1];
   const buildNumber = m[2];
@@ -39,7 +39,7 @@ gulp.task('download-scp-build', ['prepare-dirs'], function () {
   console.log('downloading ' + jobName + '/' + buildNumber); // eslint-disable-line no-console
 
   let upStreamJobUrl = global.ciRootUrl + 'job/' + utils.encode(jobName) +
-     '/' + buildNumber  + '/api/json';
+     '/' + buildNumber + '/api/json';
   console.log('upStreamJobUrl ->', upStreamJobUrl); // eslint-disable-line no-console
   return request(upStreamJobUrl)
     .spread(function (res, body) {
@@ -60,9 +60,9 @@ gulp.task('download-scp-build', ['prepare-dirs'], function () {
         "'" + target + "'"
       ], {cwd: global.appiumRoot});
     });
-});
+}));
 
-gulp.task('expand-build', ['global'], function function_name () {
+gulp.task('expand-build', gulp.series('global', function function_name () {
   return utils.smartSpawn('tar', [
     'xfzp',
     path.resolve(global.inputDir, 'appium-build.tgz'),
@@ -70,4 +70,4 @@ gulp.task('expand-build', ['global'], function function_name () {
     print: 'Expanding build',
     cwd: global.appiumRoot
   }).promise;
-});
+}));

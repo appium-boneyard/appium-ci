@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const Q = require('q');
 const exec = Q.denodeify(require('child_process').exec);
