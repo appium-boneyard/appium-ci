@@ -6,7 +6,7 @@ const boilerplate = require('appium-gulp-plugins').boilerplate.use(gulp);
 
 const argv = require('yargs').argv;
 
-const e2eFiles = _(argv).pick('android', 'ios').map(function (v, k) {
+const e2eFiles = _(argv).pick('android', 'ios').map(function mapTestDirs (v, k) {
   return '${testDir}/e2e/' + k + '/*-e2e-specs.js';
 }).value();
 
