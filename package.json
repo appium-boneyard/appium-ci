@@ -67,7 +67,7 @@
     "gulp": "^4.0.0",
     "pre-commit": "^1.2.2",
     "sinon": "^7.2.3",
-    "yargs": "^13.1.0"
+    "yargs": "^14.0.0"
   },
   "greenkeeper": {
     "ignore": []
